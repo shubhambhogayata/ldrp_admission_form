@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="tailwind.css">
+	<script src="https://cdn.tailwindcss.com"></script>
+	<title>LDRP - ITR | Admission Form</title>
+</head>
+
+<body class="bg-[#F5F5F5] overflow-x-hidden">
+	<!-- Navbar -->
+	<div class="fixed top-0 w-full bg-[#263A81] p-4 text-white flex items-center justify-between z-50">
+		<div class="lg:w-[280px] w-[180px]">
+			<img src="/img/LDRP-LOGO.svg" class="object-contain" />
+		</div>
+		<div class="">
+			<p class="uppercase font-bold hidden lg:block">Student Information</p>
+		</div>
+		<div class="flex flex-col lg:flex-row items-start gap-2">
+			<div class="">
+				<p class="font-bold">Contact No. :</p>
+			</div>
+			<div class="">
+				<p>+ 91 - 079 - 23241492</p>
+				<p>+ 91 - 079 - 23241493</p>
+			</div>
+		</div>
+	</div>
+
+	<!-- Degree eng. -->
+	<div class="px-5 lg:px-0">
+		<div class="lg:mt-24 mt-32 mb-4 lg:w-[90%] w-full mx-auto bg-white p-2 rounded-xl text-center">
+			<p class="uppercase text-[#159BD6] font-bold text-lg tracking-[0.02em]">Degree engineering</p>
+		</div>
+	</div>
+
+	<div class="w-[90%] mx-auto bg-white p-3 px-4 rounded-xl mb-4 overflow-hidden">
+		<p class="text-[#159BD6]"><span class="font-bold">Note: </span>Please Fill all the details in <span
+				class="font-bold">CAPITAL</span> Letters only</p>
+		<div class="lg:mt-8 mt-4 lg:px-10 px-3">
+			<p class="text-[#159BD6] text-center font-bold">UNDERTAKING</p>
+			<p class="my-4 font-semibold text-justify">We understand that the fees collected now are on adhoc basis
+				and f we hereby agree to pay the difference as when the final fees as decided by ; fee regularly
+				Committee.</p>
+		</div>
+		<div class="lg:px-5 px-3 flex flex-col lg:flex-row items-center justify-between">
+			<div class="flex items-center gap-2 w-full lg:w-fit">
+				<p class="capitalize font-bold whitespace-nowrap">date :</p>
+				<input type="text" name="" id="" pattern="\d{1,2}/\d{1,2}/\d{4}"
+					class="border border-[#CBCBCB] rounded-md text-[#159BD6] w-full outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm"
+					placeholder="DD/MM/YYYY" title="Date Formate Is DD/MM/YYYY" required>
+			</div>
+			<div class="my-4 flex lg:flex-col flex-row gap-2 items-center relative">
+				<p class="font-bold lg:mb-2">Signature Of the Student</p>
+				<label for="signOfStudent" id="signOfStudentName"
+					class="cursor-pointer rounded-md bg-[#159BD6] truncate max-w-[200px] capitalize text-white p-1.5 px-8 font-bold active:bg-[#007CB2]">Upload</label>
+				<input id="signOfStudent" type="file" name="" accept="image/png, image/gif, image/jpeg"
+					class="absolute left-0 opacity-0 " required oninput="(()=>{
+						let imageInput = document.getElementById('signOfStudent');
+						imageInput.addEventListener('change', () => {
+							if (imageInput.files.length > 0) {
+								const fileName = document.getElementById('signOfStudent').files[0].name;
+								document.getElementById('signOfStudentName').innerHTML = fileName;
+							}
+						});
+					})()" />
+			</div>
+			<div class="my-4 flex lg:flex-col flex-row gap-3 items-center relative">
+				<p class="font-bold lg:mb-2">Signature Of the Parent</p>
+				<label for="signOfParent" id="signOfParentName"
+					class="cursor-pointer rounded-md bg-[#159BD6] truncate max-w-[200px] capitalize text-white p-1.5 px-8 font-bold active:bg-[#007CB2]">Upload</label>
+				<input id="signOfParent" type="file" name="" accept="image/png, image/gif, image/jpeg"
+					class="absolute left-0 opacity-0 " required oninput="(()=>{
+						let imageInput = document.getElementById('signOfParent');
+						imageInput.addEventListener('change', () => {
+							if (imageInput.files.length > 0) {
+								const fileName = document.getElementById('signOfParent').files[0].name;
+								document.getElementById('signOfParentName').innerHTML = fileName;
+							}
+						});
+					})()" />
+			</div>
+		</div>
+		<div class="lg:px-5 px-3">
+			<div id="tableHeader"
+				class="bg-[#159BD6] w-full h-fit rounded-lg px-2 flex flex-col lg:flex-row flex-nowrap justify-between items-center transition-all duration-300">
+				<div
+					class="h-full flex flex-col lg:flex-row w-full lg:w-fit flex-nowrap lg:items-center gap-5 lg:m-3 lg:my-1 m-2">
+					<p class="text-lg font-bold text-white p-1">Upload Documents:</p>
+					<select name="documentType" id="documentType"
+						class="bg-[#f5f5f5] p-1 px-5 border-r-[1rem] border-[#f5f5f5] rounded-md font-semibold capitalize outline-none lg:w-max"
+						required>
+						<option value="" class="bg-white" disabled selected>---Select---</option>
+						<option value="Aadharcard" class="bg-white">Aadhar Card</option>
+						<option value="Pancard" class="bg-white">Pan Card</option>
+						<option value="Photo" class="bg-white">photo</option>
+						<option value="Signature" class="bg-white">Signature</option>
+					</select>
+				</div>
+				<div class="h-full flex flex-nowrap items-center gap-5 m-3 my-1 relative overflow-hidden">
+					<div class="relative lg:p-3 py-3 overflow-hidden">
+						<input id="documentUpload" type="file" name=""
+							accept="image/png, image/jpeg, application/pdf" class="absolute left-0 opacity-0 "
+							required oninput="(()=>{
+							let imageInput = document.getElementById('documentUpload');
+							imageInput.addEventListener('change', () => {
+								if (imageInput.files.length > 0) {
+									const fileName = document.getElementById('documentUpload').files[0].name;
+									document.getElementById('documentUploadName').innerHTML = fileName;
+									document.getElementById('confirmDocument').classList.remove('hidden');
+								}
+							});
+						})()" />
+						<label for="documentUpload" id="documentUploadName"
+							class="block cursor-pointer rounded-md truncate w-fit lg:!max-w-[300px] max-w-[120px] bg-[#F5F5F5] capitalize text-[#159BD6] p-1.5 px-8 font-bold active:bg-[#159BD688] overflow-hidden">Upload</label>
+					</div>
+
+					<button id="confirmDocument" onclick="uploadDocument()"
+						class="hidden cursor-pointer focus:outline-none rounded-md bg-[#F5F5F5] truncate max-w-[200px] capitalize text-[#159BD6] p-1.5 px-8 font-bold active:bg-[#159BD611] transition-all ">Confirm</button>
+				</div>
+			</div>
+			<div id="tableRow">
+				<!-- <div class='bg-[#F1F1F1] border-x-2 border-[#159BD6] w-full h-fit flex flex-nowrap justify-between items-center py-2 px-5'>
+					<p class='text-[#159BD6] font-semibold'>1. Document Name</p>
+					<div class='flex flex-nowrap gap-5'>
+						<button class='bg-[#159BD6] p-1 px-4 text-white rounded-md font-semibold'>Change</button>
+						<button class='border border-[#159BD6] rounded-md p-1 px-6 font-semibold text-[#159BD6]'>View</button>
+						<button class='text-red-500 border-b-2 border-red-500 font-semibold'>Remove</button>
+					</div>
+				</div> -->
+			</div>
+
+		</div>
+		<div class="w-fit mx-auto flex gap-3 my-4">
+			<button type="submit" class="bg-[#159BD6] p-2 px-8 text-white font-bold rounded-md">Submit</button>
+			<button type="reset"
+				class="p-2 px-8 border border-[#159BD6] rounded-md text-[#159BD6] font-bold">Cancel</button>
+		</div>
+	</div>
+
+	<div class="my-5 w-[80%] mx-auto">
+		<p class="text-[#263A81] font-bold">Please attach listed Documents:</p>
+		<p class="text-[#263A81] font-bold">SSCMarksheet</p>
+		<p class="text-[#263A81] font-bold">HSC Marksheet</p>
+		<p class="text-[#263A81] font-bold">GUJCET Marksheet</p>
+		<p class="text-[#263A81] font-bold">School Leaving Certificate</p>
+		<p class="text-[#263A81] font-bold">Caste Certificate (if applicable)</p>
+		<p class="text-[#263A81] font-bold">NCL (if applicable)</p>
+		<p class="text-[#263A81] font-bold">Certificate of P.H. (if applicable)</p>
+		<p class="text-[#263A81] font-bold">Admission order</p>
+		<p class="text-[#263A81] font-bold">BangFee Challan</p>
+		<p class="text-[#263A81] font-bold">3 photographs</p>
+	</div>
+
+	<!-- Preview -->
+	<div id="previewContainer" onclick="(()=>{
+		document.getElementById('previewContainer').classList.add('hidden');
+	})()" class="hidden top-0 fixed z-50 w-screen h-screen bg-black/50 px-5">
+		<img id="previewImage" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 lg:w-[60%] w-[80%]"
+			src="./img/LDRP-LOGO.svg" alt="" />
+	</div>
+
+	<!-- Footer -->
+	<div class="w-full bg-[#263A81] p-4 text-white flex lg:flex-row flex-col items-center justify-between">
+		<p class="text-justify lg:text-left"><span class="font-bold">Address: </span>LDRP Institute of Technology &
+			Research,Near
+			KH-5,Sector-15,Gandhinagar - 382015.</p>
+		<p class="font-bold">Info@ldrp.ac.in</p>
+	</div>
+	<script>
+		function uploadDocument() {
+			let file = document.getElementById('documentUpload').files[0];
+			let fileName = document.getElementById('documentUpload').files[0].name;
+			let documentType = document.getElementById('documentType').value;
+			let rowNum = document.getElementById('tableRow').childElementCount + 1;
+
+			if (document.getElementById('documentUpload').files.length == 0 || documentType == '') {
+				alert('Please Select Document Type and Upload Document');
+			}
+			else {
+				document.getElementById('tableHeader').classList.add('rounded-t-lg');
+				document.getElementById('tableHeader').classList.remove('rounded-lg');
+				let newRow = document.createElement('div');
+				newRow.id = 'tableRow-' + rowNum;
+				newRow.setAttribute('data-docType', documentType);
+				newRow.classList.add('border-x-2', 'even:bg-white', 'odd:bg-[#F1F1F1]', 'last:border-b-2', 'last:rounded-b-lg', 'border-[#159BD6]', 'w-full', 'h-fit', 'flex', 'flex-col', 'lg:flex-row', 'flex-nowrap', 'justify-between', 'lg:items-center', 'items-start', 'lg:py-2', 'lg:px-5', 'p-5', 'tableRows');
+
+				let docName = document.createElement('p');
+				docName.classList.add('text-[#159BD6]', 'font-semibold');
+				docName.innerHTML = '<span class="indexNum">' + rowNum + '</span>. ' + documentType + '<span class="font-thin"> (' + fileName + ') </span>';
+
+				let newInput = document.createElement('input');
+				newInput.type = 'file';
+				newInput.accept = 'image/png, image/jpeg, application/pdf';
+				const fileList = new DataTransfer();
+				for (var i = 0; i < document.getElementById('documentUpload').files.length; i++) {
+					fileList.items.add(document.getElementById('documentUpload').files[i]);
+				}
+				newInput.files = fileList.files;
+				newInput.setAttribute('hidden', '')
+				newInput.name = 'document-' + documentType;
+				newInput.id = 'document-' + documentType;
+				newInput.addEventListener('change', () => {
+					if (newInput.files.length > 0) {
+						const newFileName = newInput.files[0].name;
+						docName.innerHTML = '<span class="indexNum">' + rowNum + '</span>. ' + documentType + '<span class="font-thin"> (' + newFileName + ') </span>';
+					}
+				});
+
+				let functionContainer = document.createElement('div');
+				functionContainer.classList.add('flex', 'flex-nowrap', 'gap-5', 'mt-4', 'lg:mt-0');
+
+				let changeBtn = document.createElement('button');
+				changeBtn.classList.add('bg-[#159BD6]', 'p-1', 'px-4', 'text-white', 'rounded-md', 'font-semibold', 'outline-none', 'focus:outline-none');
+				changeBtn.innerHTML = 'Change';
+				changeBtn.addEventListener('click', () => {
+					document.getElementById('document-' + documentType).click();
+				});
+				let viewBtn = document.createElement('button');
+				viewBtn.classList.add('border', 'border-[#159BD6]', 'rounded-md', 'p-1', 'px-6', 'text-[#159BD6]', 'font-semibold', 'outline-none', 'focus:outline-none');
+				viewBtn.innerHTML = 'View';
+				viewBtn.addEventListener('click', () => {
+					let file = document.getElementById('document-' + documentType).files[0];
+					let fileExtension = file.name.split('.').pop();
+					if (fileExtension == 'pdf') {
+						const fileURL = URL.createObjectURL(file);
+						window.open(fileURL);
+					}
+					else {
+						let reader = new FileReader();
+						reader.onload = function () {
+							let dataURL = reader.result;
+							document.getElementById('previewImage').src = dataURL;
+							document.getElementById('previewContainer').classList.remove('hidden');
+						}
+						reader.readAsDataURL(file);
+					}
+				});
+
+
+				let removeBtn = document.createElement('button');
+				removeBtn.classList.add('text-red-500', 'border-b-2', 'border-red-500', 'font-semibold', 'outline-none', 'focus:outline-none');
+				removeBtn.innerHTML = 'Remove';
+				removeBtn.addEventListener('click', () => {
+					let docType = newRow.getAttribute('data-docType');
+					let options = document.getElementById('documentType').options;
+					let newOption = document.createElement('option');
+					newOption.value = docType;
+					newOption.innerHTML = docType;
+					options.add(newOption);
+					document.getElementById('tableRow').removeChild(newRow);
+					if (document.getElementById('tableRow').childElementCount == 0) {
+						document.getElementById('tableHeader').classList.remove('rounded-t-lg');
+						document.getElementById('tableHeader').classList.add('rounded-lg');
+					}
+					if (document.getElementById('documentType').options.length == 1) {
+						document.getElementById('documentType').classList.add('hidden');
+						document.getElementById('documentUpload').classList.add('hidden');
+						document.getElementById('documentUploadName').classList.add('hidden');
+					}
+					else {
+						document.getElementById('documentType').classList.remove('hidden');
+						document.getElementById('documentUpload').classList.remove('hidden');
+						document.getElementById('documentUploadName').classList.remove('hidden');
+					}
+					let indexNumArr = document.getElementsByClassName('indexNum');
+					for (let i = 0; i < indexNumArr.length; i++) {
+						indexNumArr[i].innerHTML = i + 1;
+						indexNumArr[i].parentElement.parentElement.id = 'tableRow-' + (i + 1);
+					}
+				});
+				functionContainer.appendChild(changeBtn);
+				functionContainer.appendChild(viewBtn);
+				functionContainer.appendChild(removeBtn);
+				newRow.appendChild(docName);
+				newRow.appendChild(newInput);
+
+				newRow.appendChild(functionContainer);
+				document.getElementById('tableRow').appendChild(newRow);
+
+				let options = document.getElementById('documentType').options;
+				for (let i = 0; i < options.length; i++) {
+					if (options[i].value == documentType) {
+						options[i].remove();
+					}
+				}
+				if (document.getElementById('documentType').options.length == 1) {
+					document.getElementById('documentType').classList.add('hidden');
+					document.getElementById('documentUpload').classList.add('hidden');
+					document.getElementById('documentUploadName').classList.add('hidden');
+				}
+				else {
+					document.getElementById('documentType').classList.remove('hidden');
+					document.getElementById('documentUpload').classList.remove('hidden');
+					document.getElementById('documentUploadName').classList.remove('hidden');
+				}
+
+				document.getElementById('documentUpload').value = '';
+				document.getElementById('confirmDocument').classList.add('hidden');
+				document.getElementById('documentUploadName').innerHTML = 'Upload';
+			}
+		}
+	</script>
+</body>
+
+</html>
