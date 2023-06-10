@@ -146,19 +146,21 @@
 					</span>ઉપરની વિગતો ધ્યાનપૂર્વક વાંચ્યા પછી
 					જ નીચે સહી અપલોડ કરો.</p>
 			</div>
-			<div class="lg:px-5 flex lg:flex-row flex-col items-center justify-between">
-				<div class="flex items-center gap-2 mt-4 lg:mt-0 w-full lg:w-fit">
-					<p class="capitalize font-bold whitespace-nowrap">date :</p>
-					<input type="text" name="" id="" pattern="\d{1,2}/\d{1,2}/\d{4}"
-						class="border border-[#CBCBCB] rounded-md w-full text-[#159BD6] outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm"
-						placeholder="DD/MM/YYYY" title="Date Formate Is DD/MM/YYYY" required>
-				</div>
-				<div class="my-4 flex lg:flex-col flex-row w-full lg:w-fit gap-3 lg:gap-0 items-center relative">
-					<p class="font-bold lg:mb-2">Signature Of the Student</p>
-					<label for="signOfStudent" id="signOfStudentName"
-						class="cursor-pointer rounded-md bg-[#159BD6] truncate lg:max-w-[200px] max-w-[120px] capitalize text-white p-1.5 px-8 font-bold active:bg-[#007CB2]">Upload</label>
-					<input id="signOfStudent" type="file" name="" accept="image/png, image/gif, image/jpeg"
-						class="absolute left-0 opacity-0" required oninput="(()=>{
+			<form action="/page3.html">
+				<div class="lg:px-5 flex lg:flex-row flex-col items-center justify-between">
+					<div class="flex items-center gap-2 mt-4 lg:mt-0 w-full lg:w-fit">
+						<p class="capitalize font-bold whitespace-nowrap">date :</p>
+						<input type="text" name="date" id="date" pattern="\d{1,2}/\d{1,2}/\d{4}" data-title="date"
+							class="border border-[#CBCBCB] rounded-md w-full text-[#159BD6] outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm"
+							placeholder="DD/MM/YYYY" title="Date Formate Is DD/MM/YYYY" required>
+					</div>
+					<div
+						class="my-4 flex lg:flex-col flex-row w-full lg:w-fit gap-3 lg:gap-0 items-center relative">
+						<p class="font-bold lg:mb-2">Signature Of the Student</p>
+						<label for="signOfStudent" id="signOfStudentName"
+							class="cursor-pointer rounded-md bg-[#159BD6] truncate lg:max-w-[200px] max-w-[120px] capitalize text-white p-1.5 px-8 font-bold active:bg-[#007CB2]">Upload</label>
+						<input id="signOfStudent" type="file" name="" accept="image/png, image/gif, image/jpeg"
+							class="absolute left-0 opacity-0" required oninput="(()=>{
 				let imageInput = document.getElementById('signOfStudent');
 				imageInput.addEventListener('change', () => {
 					if (imageInput.files.length > 0) {
@@ -167,13 +169,14 @@
 					}
 				});
 			})()" />
-				</div>
-				<div class="my-4 flex lg:flex-col flex-row w-full lg:w-fit gap-3 lg:gap-0 items-center relative">
-					<p class="font-bold lg:mb-2">Signature Of the Parent</p>
-					<label for="signOfParent" id="signOfParentName"
-						class="cursor-pointer rounded-md bg-[#159BD6] truncate lg:max-w-[200px] max-w-[120px] capitalize text-white p-1.5 px-8 font-bold active:bg-[#007CB2]">Upload</label>
-					<input id="signOfParent" type="file" name="" accept="image/png, image/gif, image/jpeg"
-						class="absolute left-0 opacity-0" required oninput="(()=>{
+					</div>
+					<div
+						class="my-4 flex lg:flex-col flex-row w-full lg:w-fit gap-3 lg:gap-0 items-center relative">
+						<p class="font-bold lg:mb-2">Signature Of the Parent</p>
+						<label for="signOfParent" id="signOfParentName"
+							class="cursor-pointer rounded-md bg-[#159BD6] truncate lg:max-w-[200px] max-w-[120px] capitalize text-white p-1.5 px-8 font-bold active:bg-[#007CB2]">Upload</label>
+						<input id="signOfParent" type="file" name="" accept="image/png, image/gif, image/jpeg"
+							class="absolute left-0 opacity-0" required oninput="(()=>{
 				let imageInput = document.getElementById('signOfParent');
 				imageInput.addEventListener('change', () => {
 					if (imageInput.files.length > 0) {
@@ -182,14 +185,16 @@
 					}
 				});
 			})()" />
+					</div>
 				</div>
-			</div>
-			<div class="w-fit mx-auto flex gap-3 my-4">
-				<button type="submit" class="bg-[#159BD6] p-2 lg:px-8 px-4 text-white font-bold rounded-md">Save And
-					Next</button>
-				<button type="reset"
-					class="p-2 px-14 border border-[#159BD6] rounded-md text-[#159BD6] font-bold">Cancel</button>
-			</div>
+				<div class="w-fit mx-auto flex gap-3 my-4">
+					<button type="submit"
+						class="bg-[#159BD6] p-2 lg:px-8 px-4 text-white font-bold rounded-md">Save And
+						Next</button>
+					<button type="reset"
+						class="p-2 px-14 border border-[#159BD6] rounded-md text-[#159BD6] font-bold">Cancel</button>
+				</div>
+			</form>
 		</div>
 	</div>
 
@@ -200,6 +205,23 @@
 			KH-5,Sector-15,Gandhinagar - 382015.</p>
 		<p class="font-bold">Info@ldrp.ac.in</p>
 	</div>
+	<script>
+		let inputArr = document.querySelectorAll('input');
+		for (let i = 0; i < inputArr.length; i++) {
+			const input = inputArr[i];
+			let title = input.getAttribute('data-title');
+			if (input.getAttribute("type") != "file") {
+				if (localStorage.getItem(title) !== null) {
+					input.value = localStorage.getItem(title);
+				}
+				input.addEventListener('keyup', () => {
+					input.value = input.value.toUpperCase();
+					localStorage.setItem(title, input.value);
+				});
+			}
+		}
+	</script>
+
 </body>
 
 </html>

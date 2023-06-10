@@ -140,21 +140,32 @@
 				class="p-2 px-8 border border-[#159BD6] rounded-md text-[#159BD6] font-bold">Cancel</button>
 		</div>
 	</div>
-
-	<div class="my-5 w-[80%] mx-auto">
-		<p class="text-[#263A81] font-bold">Please attach listed Documents:</p>
-		<p class="text-[#263A81] font-bold">SSCMarksheet</p>
-		<p class="text-[#263A81] font-bold">HSC Marksheet</p>
-		<p class="text-[#263A81] font-bold">GUJCET Marksheet</p>
-		<p class="text-[#263A81] font-bold">School Leaving Certificate</p>
-		<p class="text-[#263A81] font-bold">Caste Certificate (if applicable)</p>
-		<p class="text-[#263A81] font-bold">NCL (if applicable)</p>
-		<p class="text-[#263A81] font-bold">Certificate of P.H. (if applicable)</p>
-		<p class="text-[#263A81] font-bold">Admission order</p>
-		<p class="text-[#263A81] font-bold">BangFee Challan</p>
-		<p class="text-[#263A81] font-bold">3 photographs</p>
+	<div class="grid grid-rows-2 grid-cols-1 lg:grid-rows-1 lg:grid-cols-2  w-[80%] mx-auto relative">
+		<div class="my-5 ">
+			<p class="text-[#263A81] font-bold">Please attach listed Documents:</p>
+			<p class="text-[#263A81] font-bold">SSCMarksheet</p>
+			<p class="text-[#263A81] font-bold">HSC Marksheet</p>
+			<p class="text-[#263A81] font-bold">GUJCET Marksheet</p>
+			<p class="text-[#263A81] font-bold">School Leaving Certificate</p>
+			<p class="text-[#263A81] font-bold">Caste Certificate (if applicable)</p>
+			<p class="text-[#263A81] font-bold">NCL (if applicable)</p>
+			<p class="text-[#263A81] font-bold">Certificate of P.H. (if applicable)</p>
+			<p class="text-[#263A81] font-bold">Admission order</p>
+			<p class="text-[#263A81] font-bold">BangFee Challan</p>
+			<p class="text-[#263A81] font-bold">3 photographs</p>
+		</div>
+		<iframe id="formPDF" name="formPDF" src="pdf.html" class="w-full h-full"></iframe>
+		<div onclick="(()=>{
+			// I want to download the pdf file here from the iframe without using print
+			let iframe = document.getElementById('formPDF');
+			iframe.contentWindow.print();
+		})()" class="w-10 h-10 absolute bottom-4 right-4 lg:top-4 lg:right-4 flex items-center justify-center bg-[#159BD6] rounded-full hover:scale-110 transition-all duration-300 hover:cursor-pointer">
+			<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="white" class="bi bi-download" viewBox="0 0 16 16">
+				<path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+				<path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+			</svg>
+		</div>
 	</div>
-
 	<!-- Preview -->
 	<div id="previewContainer" onclick="(()=>{
 		document.getElementById('previewContainer').classList.add('hidden');
@@ -303,7 +314,10 @@
 				document.getElementById('documentUploadName').innerHTML = 'Upload';
 			}
 		}
+
+		
 	</script>
+	
 </body>
 
 </html>
