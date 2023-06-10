@@ -1,0 +1,531 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="{% static 'tailwindCSS.js' %}"></script>
+		<style>
+			td,
+			th {
+				border: 1px solid #159bd6;
+				padding: 8px;
+			}
+
+			tr:nth-child(3),
+			tr:nth-child(5) {
+				background-color: #dbdbdb;
+			}
+		</style>
+		<title>LDRP - ITR | Admission Form</title>
+	</head>
+
+	<body class="bg-[#F5F5F5] overflow-x-hidden">
+		<!-- Navbar -->
+		<div class="fixed top-0 w-full bg-[#263A81] p-4 text-white flex items-center justify-between z-50">
+			<div class="lg:w-[280px] w-[180px]">
+				<img src="{% static '/img/LDRP-LOGO.svg' %}" class="object-contain" />
+			</div>
+			<div>
+				<p class="uppercase font-bold hidden lg:block">Student Information</p>
+			</div>
+			<div class="flex flex-col lg:flex-row items-start gap-2">
+				<div>
+					<p class="font-bold">Contact No. :</p>
+				</div>
+				<div>
+					<p>+ 91 - 079 - 23241492</p>
+					<p>+ 91 - 079 - 23241493</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Degree eng. -->
+		<div class="px-5 lg:px-0">
+			<div class="lg:mt-24 mt-32 mb-4 lg:w-[90%] w-full mx-auto bg-white p-2 rounded-xl text-center">
+				<p class="uppercase text-[#159BD6] font-bold text-lg tracking-[0.02em]">Degree engineering</p>
+			</div>
+		</div>
+
+		<!-- Main form -->
+		<div class="px-5 lg:px-0">
+			<div class="lg:w-[90%] w-full mx-auto bg-white p-3 px-4 rounded-xl mb-4">
+				<p class="text-[#159BD6] text-justify lg:text-left"><span class="font-bold">Note: </span>Please Fill all the details in <span class="font-bold">CAPITAL</span> Letters only</p>
+				<form action="/" method="post">
+					{% csrf_token %}
+					<div class="flex flex-col lg:flex-row justify-between mt-4 lg:px-5">
+						<div class="lg:w-[40%] w-full">
+							<div class="flex items-center gap-2 w-full lg:w-fit">
+								<p class="capitalize font-bold whitespace-nowrap">date :</p>
+								<input type="text" name="date" id="date" pattern="\d{1,2}/\d{1,2}/\d{4}" data-title="date" class="border border-[#CBCBCB] rounded-md text-[#159BD6] w-full outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="DD/MM/YYYY" title="Date Formate Is DD/MM/YYYY" required />
+							</div>
+							<div class="my-4">
+								<p class="font-bold mb-2">Name Of the Student <span class="text-[#159BD6] font-normal">(As per 12th Marksheet)</span></p>
+								<input type="text" name="nameOfTheStudent" id="nameOfTheStudent" data-title="nameOfTheStudent" class="border border-[#CBCBCB] w-full rounded-md text-[#159BD6] outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="Name Of the Student" required />
+							</div>
+							<div class="my-4">
+								<p class="font-bold mb-2">Student Name</p>
+								<input type="text" name="studentName" id="studentName" data-title="studentName" class="border border-[#CBCBCB] w-full rounded-md text-[#159BD6] outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="Student name" required />
+							</div>
+							<div class="my-4">
+								<p class="font-bold mb-2">Father’s Name</p>
+								<input type="text" name="fatherName" id="fatherName" data-title="fatherName" class="border border-[#CBCBCB] w-full rounded-md text-[#159BD6] outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="Father’s Name" required />
+							</div>
+							<div class="my-4">
+								<p class="font-bold mb-2">Surname</p>
+								<input type="text" name="surname" id="surname" data-title="surname" class="border border-[#CBCBCB] w-full rounded-md text-[#159BD6] outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="Surname" required />
+							</div>
+						</div>
+						<div class="lg:w-1/2 w-full mt-4 lg:mt-0">
+							<div class="flex items-center gap-2 w-full lg:w-fit">
+								<p class="capitalize font-bold whitespace-nowrap">Round :</p>
+								<input type="text" name="round" id="round" data-title="round" class="border border-[#CBCBCB] rounded-md text-[#159BD6] w-full outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="" required />
+							</div>
+							<div class="my-4 relative flex flex-row lg:flex-col items-center lg:items-start justify-between">
+								<p class="font-bold lg:mb-2 mb-0">Passport Size Photograph</p>
+								<label for="passportPhoto" id="passportPhotoName" class="cursor-pointer rounded-md bg-[#159BD6] capitalize text-white lg:max-w-[300px] max-w-[120px] truncate p-1.5 px-8 font-bold active:bg-[#007CB2]">Upload</label>
+								<input hidden type="text" id="passportPhotoUrl" name="passportPhotoUrl" data-title="passportPhotoUrl" />
+								<input
+									id="passportPhoto"
+									type="file"
+									name="passportPhoto"
+									data-title="passportPhoto"
+									accept="image/png, image/gif, image/jpeg"
+									class="absolute left-0 opacity-0"
+									required
+									oninput="(()=>{
+										let imageInput = document.getElementById('passportPhoto');
+										if (imageInput.files.length > 0) {
+											const fileName = document.getElementById('passportPhoto').files[0].name;
+											document.getElementById('passportPhotoName').innerHTML = fileName;
+										}
+										var formdata = new FormData();
+										formdata.append('image', imageInput.files[0], imageInput.files[0].name);
+
+										var requestOptions = {
+											method: 'POST',
+											body: formdata,
+											redirect: 'follow'
+										};
+
+										fetch('http:\/\/127.0.0.1:8080\/imageUpload\/', requestOptions)
+										.then(response => response.json())
+										.then(result => {
+											console.log(result['image'])
+											localStorage.setItem('passportPhoto', result['image']);
+											document.getElementById('passportPhotoUrl').value = result['image'];
+											localStorage.setItem('passportPhotoName', document.getElementById('passportPhotoName').innerHTML);
+										})
+										.catch(error => console.log('error', error));
+									})()"
+								/>
+							</div>
+							<div class="my-4 w-full lg:w-fit">
+								<p class="font-bold mb-2">ACPC Rank</p>
+								<input type="number" name="ACPCRank" id="ACPCRank" data-title="ACPCRank" maxlength="5" class="border border-[#CBCBCB] rounded-md text-[#159BD6] w-full lg:w-fit outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="00000" required />
+							</div>
+							<div class="my-4 w-full lg:w-fit">
+								<p class="font-bold mb-2">GUJCET Main round Roll no.</p>
+								<input type="text" name="GUJCETRollNo" id="GUJCETRollNo" data-title="GUJCETRollNo" class="border border-[#CBCBCB] rounded-md text-[#159BD6] w-full lg:w-fit outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="A-000000" />
+							</div>
+							<div class="my-4 w-full lg:w-fit">
+								<p class="font-bold mb-2">Medium <span class="text-[#159BD6] font-normal">(in 12th Std.)</span></p>
+								<input type="text" name="medium" id="medium" data-title="medium" class="border border-[#CBCBCB] rounded-md text-[#159BD6] w-full lg:w-fit outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="Eg. English/Gujarati" required />
+							</div>
+						</div>
+					</div>
+					<div class="lg:px-5 flex flex-col lg:flex-row items-center justify-between">
+						<div class="my-4 w-full lg:w-fit">
+							<p class="font-bold mb-2">Board</p>
+							<select name="board" id="board" data-title="board" class="bg-[#E6E6E6] p-1 px-5 w-full lg:w-fit border-r-[1rem] border-[#E6E6E6] rounded-md font-semibold capitalize outline-none" required>
+								<option value="" class="bg-white border-b border-[#CBCBCB]" disabled selected>---Select---</option>
+								<option value="GSHSEB" class="bg-white">GSHSEB</option>
+								<option value="CBSC" class="bg-white">CBSE</option>
+								<option value="NIOS" class="bg-white">NIOS</option>
+								<option value="ISCE" class="bg-white">ISCE</option>
+								<option value="other" class="bg-white">other</option>
+							</select>
+						</div>
+						<div class="my-4 w-full lg:w-fit">
+							<p class="font-bold mb-2">Category</p>
+							<select name="category" id="category" data-title="category" class="bg-[#E6E6E6] p-1 px-5 w-full lg:w-fit border-r-[1rem] border-[#E6E6E6] rounded-md font-semibold capitalize outline-none" required>
+								<option value="" class="bg-white border-b border-[#CBCBCB]" disabled selected>---Select---</option>
+								<option value="open" class="bg-white">Open</option>
+								<option value="SEBC" class="bg-white">SEBC</option>
+								<option value="SC" class="bg-white">SC</option>
+								<option value="ST" class="bg-white">ST</option>
+								<option value="ESM" class="bg-white">ESM</option>
+								<option value="EWS" class="bg-white">EWS</option>
+								<option value="other" class="bg-white">other</option>
+							</select>
+						</div>
+						<div class="my-4 w-full lg:w-fit">
+							<p class="font-bold mb-2">Gender</p>
+							<select name="gender" id="gender" data-title="gender" class="bg-[#E6E6E6] p-1 px-5 w-full lg:w-fit border-r-[1rem] border-[#E6E6E6] rounded-md font-semibold capitalize outline-none" required>
+								<option value="" class="bg-white border-b border-[#CBCBCB]" disabled selected>---Select---</option>
+								<option value="Male" class="bg-white">Male</option>
+								<option value="Female" class="bg-white">Female</option>
+							</select>
+						</div>
+						<div class="my-4 w-full lg:w-fit">
+							<p class="font-bold mb-2">Course</p>
+							<select name="course" id="course" data-title="course" class="bg-[#E6E6E6] p-1 px-5 w-full border-r-[1rem] border-[#E6E6E6] rounded-md font-semibold capitalize outline-none text-center lg:w-96" required>
+								<option value="" class="bg-white border-b border-[#CBCBCB]" disabled selected>---Select---</option>
+								<option value="Auto" class="bg-white">Automobile Engineering</option>
+								<option value="Civil" class="bg-white">Civil Engineering</option>
+								<option value="CE" class="bg-white">Computer Engineering</option>
+								<option value="EE" class="bg-white">Electrical Engineering</option>
+								<option value="EC" class="bg-white">Electronic & Communication Engineering</option>
+								<option value="IT" class="bg-white">Information & Technology Engineering</option>
+								<option value="ME" class="bg-white">Mechanical Engineering</option>
+							</select>
+						</div>
+					</div>
+					<div class="lg:px-5 flex flex-col lg:flex-row items-center justify-between">
+						<div class="flex items-center gap-2 my-4 w-full lg:w-fit">
+							<p class="capitalize font-bold whitespace-nowrap">date Of Birth :</p>
+							<input type="text" name="DOB" id="DOB" pattern="\d{1,2}/\d{1,2}/\d{4}" data-title="DOB" class="border border-[#CBCBCB] rounded-md text-[#159BD6] w-full lg:w-fit outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="DD/MM/YYYY" title="Date Formate Is DD/MM/YYYY" required />
+						</div>
+						<div class="flex items-center gap-2 my-4 w-full lg:w-fit">
+							<p class="capitalize font-bold whitespace-nowrap">Place Of Birth :</p>
+							<input type="text" name="POB" id="POB" data-title="POB" class="border border-[#CBCBCB] rounded-md text-[#159BD6] w-full lg:w-fit outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="" required />
+						</div>
+						<div class="flex items-center gap-2 my-4 w-full lg:w-fit">
+							<p class="capitalize font-bold whitespace-nowrap">Blood Group :</p>
+							<input type="text" name="bloodGroup" id="bloodGroup" data-title="bloodGroup" class="border border-[#CBCBCB] rounded-md text-[#159BD6] w-full lg:w-fit outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="" />
+						</div>
+					</div>
+					<div class="lg:px-5 flex flex-col lg:flex-row items-center justify-between">
+						<div class="flex flex-col lg:flex-row lg:items-center gap-2 my-4 w-full lg:w-fit">
+							<p class="capitalize font-bold">Local Address :</p>
+							<input type="text" name="localAddress" id="localAddress" data-title="localAddress" class="border border-[#CBCBCB] lg:w-[26rem] w-full rounded-md text-[#159BD6] outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="" required />
+						</div>
+						<div class="flex items-center gap-2 my-4 w-full lg:w-fit">
+							<p class="capitalize font-bold whitespace-nowrap">City :</p>
+							<input type="text" name="city" id="city" data-title="city" class="border border-[#CBCBCB] rounded-md text-[#159BD6] w-full lg:w-fit outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="" required />
+						</div>
+						<div class="flex items-center gap-2 my-4 w-full lg:w-fit">
+							<p class="capitalize font-bold whitespace-nowrap">Pin Code :</p>
+							<input type="text" name="pinCode" id="pinCode" pattern="[0-9]{6}" maxlength="6" data-title="pinCode" class="border border-[#CBCBCB] rounded-md text-[#159BD6] w-full lg:w-fit outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="" title="Pincode Must Be Of 6 Digits" required />
+						</div>
+					</div>
+					<div class="lg:px-5 flex flex-col lg:flex-row items-center justify-between">
+						<div class="flex flex-col lg:flex-row lg:items-center gap-2 my-4 w-full lg:w-fit">
+							<p class="capitalize font-bold">Permanent Address :</p>
+							<input type="text" name="permanentAddress" id="permanentAddress" data-title="permanentAddress" class="border border-[#CBCBCB] lg:w-[24.4rem] w-full rounded-md text-[#159BD6] outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="" required />
+						</div>
+						<div class="flex items-center gap-2 my-4 w-full lg:w-fit">
+							<p class="capitalize font-bold whitespace-nowrap">City :</p>
+							<input type="text" name="cityOfPermanentAddress" id="cityOfPermanentAddress" data-title="cityOfPermanentAddress" class="border border-[#CBCBCB] rounded-md text-[#159BD6] w-full lg:w-fit outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="" required />
+						</div>
+						<div class="flex items-center gap-2 my-4 w-full lg:w-fit">
+							<p class="capitalize font-bold whitespace-nowrap">Pin Code :</p>
+							<input type="text" name="pinCodeOfPermanentAddress" id="pinCodeOfPermanentAddress" pattern="[0-9]{6}" maxlength="6" data-title="pinCodeOfPermanentAddress" class="border border-[#CBCBCB] rounded-md text-[#159BD6] w-full lg:w-fit outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="" title="Pincode Must Be Of 6 Digits" required />
+						</div>
+					</div>
+					<div class="lg:px-5 flex flex-col lg:flex-row items-center justify-between">
+						<div class="flex flex-col lg:flex-row lg:items-center gap-2 my-4 w-full lg:w-fit">
+							<p class="capitalize font-bold">Student Email :</p>
+							<input type="email" name="studentEmail" id="studentEmail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" data-title="studentEmail" class="border border-[#CBCBCB] lg:w-[20rem] w-full rounded-md text-[#159BD6] outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="Student Email" required />
+						</div>
+						<div class="flex flex-col lg:flex-row lg:items-center gap-2 my-4 w-full lg:w-fit">
+							<p class="capitalize font-bold">Student Mobile No (1) :</p>
+							<input type="tel" name="studentMobileNo1" id="studentMobileNo1" data-title="studentMobileNo1" class="border border-[#CBCBCB] lg:w-[20rem] w-full rounded-md text-[#159BD6] outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="Student Mobile No." required />
+						</div>
+					</div>
+					<div class="lg:px-5 flex flex-col lg:flex-row items-center justify-between">
+						<div class="flex flex-col lg:flex-row lg:items-center gap-2 my-4 w-full lg:w-fit">
+							<p class="capitalize font-bold">Student Mobile No (2) :</p>
+							<input type="tel" name="studentMobileNo2" id="studentMobileNo2" data-title="studentMobileNo2" class="border border-[#CBCBCB] lg:w-[20rem] w-full rounded-md text-[#159BD6] outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="Student Mobile no." />
+						</div>
+						<div class="flex flex-col lg:flex-row lg:items-center gap-2 my-4 w-full lg:w-fit">
+							<p class="capitalize font-bold">Parent’s Mobile No :</p>
+							<input type="tel" name="parentMobileNo" id="parentMobileNo" data-title="parentMobileNo" class="border border-[#CBCBCB] lg:w-[21.5rem] w-full rounded-md text-[#159BD6] outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="Parent’s Mobile No." required />
+						</div>
+					</div>
+					<div class="lg:px-5 flex flex-col lg:flex-row items-center justify-between">
+						<div class="flex flex-col lg:flex-row lg:items-center gap-2 my-4 w-full lg:w-fit">
+							<p class="capitalize font-bold">Name of the School Last Attended :</p>
+							<input type="text" name="nameOfSchool" id="nameOfSchool" data-title="nameOfSchool" class="border border-[#CBCBCB] lg:w-[34rem] w-full rounded-md text-[#159BD6] outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="School Name" required />
+						</div>
+						<div class="flex items-center gap-2 my-4 w-full lg:w-fit">
+							<p class="capitalize font-bold whitespace-nowrap">Religion :</p>
+							<input type="text" name="religion" id="religion" data-title="religion" class="border border-[#CBCBCB] rounded-md text-[#159BD6] w-full lg:w-fit outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="" required />
+						</div>
+					</div>
+					<div class="lg:mx-5 overflow-x-scroll rounded-lg lg:overflow-hidden border border-[#159BD6]">
+						<table class="w-full h-full">
+							<tr class="bg-[#159BD6] text-center rounded-t-lg">
+								<th class="p-3 text-white font-bold capitalize whitespace-nowrap">Examination</th>
+								<th class="p-3 text-white font-bold capitalize whitespace-nowrap">Year Of Passing</th>
+								<th class="p-3 text-white font-bold capitalize whitespace-nowrap">Name Of Board</th>
+								<th class="p-3 text-white font-bold capitalize whitespace-nowrap">Class obtained</th>
+								<th class="p-3 text-white font-bold capitalize whitespace-nowrap">Mark / Out Of</th>
+								<th class="p-3 text-white font-bold capitalize whitespace-nowrap">Percentage %</th>
+								<th class="p-3 text-white font-bold capitalize whitespace-nowrap">Percentile</th>
+							</tr>
+							<tr class="text-center">
+								<td class="uppercase font-bold">S.s.c</td>
+								<td>
+									<input type="text" name="ssc-year" id="ssc-year" data-title="ssc-year" class="text-[#159BD6] rounded-md outline-none w-full bg-transparent border border-transparent focus:border-[#159BD6] focus:outline-none transition-all duration-300 p-1 px-2 text-sm" placeholder="" required />
+								</td>
+								<td>
+									<input type="text" name="ssc-board" id="ssc-board" data-title="ssc-board" class="text-[#159BD6] rounded-md outline-none w-full bg-transparent border border-transparent focus:border-[#159BD6] focus:outline-none transition-all duration-300 p-1 px-2 text-sm" placeholder="" required />
+								</td>
+								<td>
+									<input type="text" name="ssc-class" id="ssc-class" data-title="ssc-class" class="text-[#159BD6] rounded-md outline-none w-full bg-transparent border border-transparent focus:border-[#159BD6] focus:outline-none transition-all duration-300 p-1 px-2 text-sm" placeholder="" required />
+								</td>
+								<td>
+									<input type="text" name="ssc-mark" id="ssc-mark" data-title="ssc-mark" class="text-[#159BD6] rounded-md outline-none bg-transparent border border-transparent focus:border-[#159BD6] focus:outline-none transition-all duration-300 p-1 px-2 text-sm" placeholder="" required />
+								</td>
+								<td>
+									<input type="text" name="ssc-percentage" id="ssc-percentage" data-title="ssc-percentage" class="text-[#159BD6] rounded-md outline-none bg-transparent border border-transparent focus:border-[#159BD6] focus:outline-none transition-all duration-300 p-1 px-2 text-sm" placeholder="" required />
+								</td>
+								<td>
+									<input type="text" name="ssc-pecentile" id="ssc-pecentile" data-title="ssc-pecentile" class="text-[#159BD6] rounded-md outline-none bg-transparent border border-transparent focus:border-[#159BD6] focus:outline-none transition-all duration-300 p-1 px-2 text-sm" placeholder="" required />
+								</td>
+							</tr>
+							<tr class="text-center">
+								<td class="uppercase font-bold">h.s.c <span class="text-[#159BD6]">(SCIENCE THEORY)</span></td>
+								<td>
+									<input type="text" name="hsc-year" id="hsc-year" data-title="hsc-year" class="text-[#159BD6] rounded-md outline-none w-full bg-transparent border border-transparent focus:border-[#159BD6] focus:outline-none transition-all duration-300 p-1 px-2 text-sm" placeholder="" />
+								</td>
+								<td>
+									<input type="text" name="hsc-board" id="hsc-board" data-title="hsc-board" class="text-[#159BD6] rounded-md outline-none w-full bg-transparent border border-transparent focus:border-[#159BD6] focus:outline-none transition-all duration-300 p-1 px-2 text-sm" placeholder="" />
+								</td>
+								<td>
+									<input type="text" name="hsc-class" id="hsc-class" data-title="hsc-class" class="text-[#159BD6] rounded-md outline-none w-full bg-transparent border border-transparent focus:border-[#159BD6] focus:outline-none transition-all duration-300 p-1 px-2 text-sm" placeholder="" />
+								</td>
+								<td>
+									<input type="text" name="hsc-mark" id="hsc-mark" data-title="hsc-mark" class="text-[#159BD6] rounded-md outline-none w-full bg-transparent border border-transparent focus:border-[#159BD6] focus:outline-none transition-all duration-300 p-1 px-2 text-sm" placeholder="" />
+								</td>
+								<td>
+									<input type="text" name="hsc-percentage" id="hsc-percentage" data-title="hsc-percentage" class="text-[#159BD6] rounded-md outline-none w-full bg-transparent border border-transparent focus:border-[#159BD6] focus:outline-none transition-all duration-300 p-1 px-2 text-sm" placeholder="" />
+								</td>
+								<td>
+									<input type="text" name="hsc-pecentile" id="hsc-pecentile" data-title="hsc-pecentile" class="text-[#159BD6] rounded-md outline-none w-full bg-transparent border border-transparent focus:border-[#159BD6] focus:outline-none transition-all duration-300 p-1 px-2 text-sm" placeholder="" />
+								</td>
+							</tr>
+							<tr class="text-center">
+								<td class="uppercase font-bold">h.s.c <span class="text-[#159BD6]">(ALL)</span></td>
+								<td>
+									<input type="text" name="hscAll-year" id="hscAll-year" data-title="hscAll-year" class="text-[#159BD6] rounded-md outline-none w-full bg-transparent border border-transparent focus:border-[#159BD6] focus:outline-none transition-all duration-300 p-1 px-2 text-sm" placeholder="" />
+								</td>
+								<td>
+									<input type="text" name="hscAll-board" id="hscAll-board" data-title="hscAll-board" class="text-[#159BD6] rounded-md outline-none w-full bg-transparent border border-transparent focus:border-[#159BD6] focus:outline-none transition-all duration-300 p-1 px-2 text-sm" placeholder="" />
+								</td>
+								<td>
+									<input type="text" name="hscAll-class" id="hscAll-class" data-title="hscAll-class" class="text-[#159BD6] rounded-md outline-none w-full bg-transparent border border-transparent focus:border-[#159BD6] focus:outline-none transition-all duration-300 p-1 px-2 text-sm" placeholder="" />
+								</td>
+								<td>
+									<input type="text" name="hscAll-mark" id="hscAll-mark" data-title="hscAll-mark" class="text-[#159BD6] rounded-md outline-none w-full bg-transparent border border-transparent focus:border-[#159BD6] focus:outline-none transition-all duration-300 p-1 px-2 text-sm" placeholder="" />
+								</td>
+								<td>
+									<input type="text" name="hscAll-percentage" id="hscAll-percentage" data-title="hscAll-percentage" class="text-[#159BD6] rounded-md outline-none w-full bg-transparent border border-transparent focus:border-[#159BD6] focus:outline-none transition-all duration-300 p-1 px-2 text-sm" placeholder="" />
+								</td>
+								<td>
+									<input type="text" name="hscAll-pecentile" id="hscAll-pecentile" data-title="hscAll-pecentile" class="text-[#159BD6] rounded-md outline-none w-full bg-transparent border border-transparent focus:border-[#159BD6] focus:outline-none transition-all duration-300 p-1 px-2 text-sm" placeholder="" />
+								</td>
+							</tr>
+							<tr class="text-center">
+								<td class="uppercase font-bold">gUJCET</td>
+								<td>
+									<input type="text" name="gujcet-year" id="gujcet-year" data-title="gujcet-year" class="text-[#159BD6] rounded-md outline-none w-full bg-transparent border border-transparent focus:border-[#159BD6] focus:outline-none transition-all duration-300 p-1 px-2 text-sm" placeholder="" />
+								</td>
+								<td>
+									<input type="text" name="gujcet-board" id="gujcet-board" data-title="gujcet-board" class="text-[#159BD6] rounded-md outline-none w-full bg-transparent border border-transparent focus:border-[#159BD6] focus:outline-none transition-all duration-300 p-1 px-2 text-sm" placeholder="" />
+								</td>
+								<td>
+									<input type="text" name="gujcet-class" id="gujcet-class" data-title="gujcet-class" class="text-[#159BD6] rounded-md outline-none w-full bg-transparent border border-transparent focus:border-[#159BD6] focus:outline-none transition-all duration-300 p-1 px-2 text-sm" placeholder="" />
+								</td>
+								<td>
+									<input type="text" name="gujcet-mark" id="gujcet-mark" data-title="gujcet-mark" class="text-[#159BD6] rounded-md outline-none bg-transparent border border-transparent focus:border-[#159BD6] focus:outline-none transition-all duration-300 p-1 px-2 text-sm" placeholder="" />
+								</td>
+								<td>
+									<input type="text" name="gujcet-percentage" id="gujcet-percentage" data-title="gujcet-percentage" class="text-[#159BD6] rounded-md outline-none bg-transparent border border-transparent focus:border-[#159BD6] focus:outline-none transition-all duration-300 p-1 px-2 text-sm" placeholder="" />
+								</td>
+								<td>
+									<input type="text" name="gujcet-pecentile" id="gujcet-pecentile" data-title="gujcet-pecentile" class="text-[#159BD6] rounded-md outline-none bg-transparent border border-transparent focus:border-[#159BD6] focus:outline-none transition-all duration-300 p-1 px-2 text-sm" placeholder="" />
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="lg:px-5 flex flex-col lg:flex-row items-start gap-2 my-4 lg:my-0">
+						<div class="lg:my-4 flex items-center gap-1">
+							<input type="checkbox" name="declaration" id="declaration" data-title="declareInput" class="w-4 h-4 accent-[#159BD6]" required />
+							<label for="declaration" class="text-[#159BD6] font-bold capitalize">i hereby declare that :</label>
+						</div>
+						<div class="lg:my-4">
+							<p class="text-[#159BD6] capitalize font-semibold text-justify lg:text-left">1. All the information provided by me is true to the best of my knowledge and belief.</p>
+							<p class="text-[#159BD6] capitalize font-semibold text-justify lg:text-left">2. I shall abide by all the rules and regulations prescribed by the collage.</p>
+						</div>
+					</div>
+					<div class="lg:px-5 flex flex-col lg:flex-row items-center justify-between">
+						<div class="flex flex-col lg:flex-row lg:items-center gap-2 my-4 w-full lg:w-fit">
+							<p class="capitalize font-bold">Mother’s Name :</p>
+							<input type="text" name="motherName" id="motherName" data-title="motherName" class="border border-[#CBCBCB] lg:w-[22rem] w-full rounded-md text-[#159BD6] outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="Mother’s Name" required />
+						</div>
+						<div class="flex flex-col lg:flex-row lg:items-center gap-2 my-4 w-full lg:w-fit">
+							<p class="capitalize font-bold">Father’s Name :</p>
+							<input type="text" name="fatherName2" id="fatherName2" data-title="fatherName2" class="border border-[#CBCBCB] lg:w-[22rem] w-full rounded-md text-[#159BD6] outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="Father’s Name" required />
+						</div>
+					</div>
+					<div class="lg:px-5 flex flex-col lg:flex-row items-center justify-between">
+						<div class="flex flex-col lg:flex-row lg:items-center gap-2 my-4 w-full lg:w-fit">
+							<p class="capitalize font-bold">Grand Father’s Name :</p>
+							<input type="text" name="grandFatherName" id="grandFatherName" data-title="grandFatherName" class="border border-[#CBCBCB] lg:w-[22rem] w-full rounded-md text-[#159BD6] outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="Grand Father’s Name" required />
+						</div>
+						<div class="flex flex-col lg:flex-row lg:items-center gap-2 my-4 w-full lg:w-fit">
+							<p class="capitalize font-bold">Surname :</p>
+							<input type="text" name="surname2" id="surname2" data-title="surname2" class="border border-[#CBCBCB] lg:w-[24.5rem] w-full rounded-md text-[#159BD6] outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="Surname" required />
+						</div>
+					</div>
+					<div class="lg:px-5">
+						<div class="flex flex-col lg:flex-row lg:items-center gap-2 my-4 w-full">
+							<p class="capitalize font-bold whitespace-nowrap">Parent’s Occupation :</p>
+							<input type="text" name="parentOccupation" id="parentOccupation" data-title="parentOccupation" class="border border-[#CBCBCB] w-full rounded-md text-[#159BD6] outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="Parents Occupation" required />
+						</div>
+					</div>
+					<div class="lg:px-5">
+						<div class="flex flex-col lg:flex-row lg:items-center gap-2 my-8 w-full">
+							<p class="capitalize font-bold whitespace-nowrap">Parent’s Occupation Address :</p>
+							<input type="text" name="parentOccupationAddress" id="parentOccupationAddress" data-title="parentOccupationAddress" class="border border-[#CBCBCB] w-full rounded-md text-[#159BD6] outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="" required />
+						</div>
+					</div>
+					<div class="lg:px-5 flex flex-col lg:flex-row items-start justify-between">
+						<div class="flex items-center gap-2 my-4 w-full lg:w-fit">
+							<p class="capitalize font-bold whitespace-nowrap">City :</p>
+							<input type="text" name="city3" id="city3" data-title="city3" class="border border-[#CBCBCB] rounded-md text-[#159BD6] w-full lg:w-fit outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="" required />
+						</div>
+						<div class="flex items-center gap-2 my-4 w-full lg:w-fit">
+							<p class="capitalize font-bold whitespace-nowrap">Pin Code :</p>
+							<input type="number" maxlength="6" max="999999" min="111111" name="pinCode3" id="pinCode3" data-title="pinCode3" class="border border-[#CBCBCB] rounded-md text-[#159BD6] w-full lg:w-fit outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="0000000" required />
+						</div>
+						<div class="my-4 flex lg:flex-col flex-row items-center justify-between w-full lg:w-fit relative">
+							<p class="font-bold lg:mb-2">Signature Of the Student</p>
+							<label for="signOfStudent" id="signOfStudentName" class="cursor-pointer rounded-md bg-[#159BD6] truncate lg:max-w-[200px] max-w-[120px] capitalize text-white p-1.5 px-8 font-bold active:bg-[#007CB2]">Upload</label>
+							<input hidden type="text" id="signOfStudentUrl" name="signOfStudentUrl" data-title="signOfStudentUrl" />
+							<input
+								id="signOfStudent"
+								type="file"
+								name="signOfStudent"
+								accept="image/png, image/gif, image/jpeg"
+								class="absolute left-0 opacity-0"
+								required
+								data-title="signOfStudent"
+								oninput="(()=>{
+								let imageInput = document.getElementById('signOfStudent');
+								if (imageInput.files.length > 0) {
+									const fileName = document.getElementById('signOfStudent').files[0].name;
+									document.getElementById('signOfStudentName').innerHTML = fileName;
+								}
+								var formdata = new FormData();
+								formdata.append('image', imageInput.files[0], imageInput.files[0].name);
+
+								var requestOptions = {
+									method: 'POST',
+									body: formdata,
+									redirect: 'follow'
+								};
+
+								fetch('http:\/\/127.0.0.1:8080\/imageUpload\/', requestOptions)
+								.then(response => response.json())
+								.then(result => {
+									console.log(result['image'])
+									localStorage.setItem('signOfStudent', result['image']);
+									document.getElementById('signOfStudentUrl').value = result['image'];
+									localStorage.setItem('signOfStudentName', document.getElementById('signOfStudentName').innerHTML);
+								})
+								.catch(error => console.log('error', error));
+							})()"
+							/>
+						</div>
+						<div class="my-4 flex lg:flex-col flex-row items-center justify-between w-full lg:w-fit relative">
+							<p class="font-bold lg:mb-2">Signature Of the Parent</p>
+							<label for="signOfParent" id="signOfParentName" class="cursor-pointer rounded-md bg-[#159BD6] truncate lg:max-w-[200px] max-w-[120px] capitalize text-white p-1.5 px-8 font-bold active:bg-[#007CB2]">Upload</label>
+							<input hidden type="text" id="signOfParentUrl" name="signOfParentUrl" data-title="signOfParentUrl" />
+							<input
+								id="signOfParent"
+								type="file"
+								name="signOfParent"
+								accept="image/png, image/gif, image/jpeg"
+								class="absolute left-0 opacity-0"
+								required
+								data-title="signOfParent"
+								oninput="(()=>{
+								let imageInput = document.getElementById('signOfParent');
+								if (imageInput.files.length > 0) {
+									const fileName = document.getElementById('signOfParent').files[0].name;
+									document.getElementById('signOfParentName').innerHTML = fileName;
+								}
+								var formdata = new FormData();
+								formdata.append('image', imageInput.files[0], imageInput.files[0].name);
+
+								var requestOptions = {
+									method: 'POST',
+									body: formdata,
+									redirect: 'follow'
+								};
+
+								fetch('http:\/\/127.0.0.1:8080\/imageUpload\/', requestOptions)
+								.then(response => response.json())
+								.then(result => {
+									console.log(result['image'])
+									localStorage.setItem('signOfParent', result['image']);
+									document.getElementById('signOfParentUrl').value = result['image'];
+									localStorage.setItem('signOfParentName', document.getElementById('signOfParentName').innerHTML);
+								})
+								.catch(error => console.log('error', error));
+							})()"
+							/>
+						</div>
+					</div>
+					<div class="w-fit mx-auto flex gap-3 my-4">
+						<button type="submit" class="bg-[#159BD6] p-2 lg:px-8 px-7 text-white font-bold rounded-md">Save And Next</button>
+						<button
+							type="reset"
+							onclick="(()=>{
+						localStorage.clear();
+					})()"
+							class="p-2 px-14 border border-[#159BD6] rounded-md text-[#159BD6] font-bold"
+						>
+							Cancel
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<script>
+			let inputArr = document.querySelectorAll("input");
+			for (let i = 0; i < inputArr.length; i++) {
+				const input = inputArr[i];
+				let title = input.getAttribute("data-title");
+				if (input.getAttribute("type") != "file") {
+					if (localStorage.getItem(title) !== null) {
+						input.value = localStorage.getItem(title);
+					}
+					input.addEventListener("keyup", () => {
+						input.value = input.value.toUpperCase();
+						localStorage.setItem(title, input.value);
+					});
+				} else {
+					if (localStorage.getItem(title + "Name") !== null) {
+						document.getElementById(title + "Name").innerHTML = localStorage.getItem(title + "Name");
+					}
+				}
+			}
+			let selectArr = document.querySelectorAll("select");
+			for (let i = 0; i < selectArr.length; i++) {
+				const select = selectArr[i];
+				let title = select.getAttribute("data-title");
+				if (localStorage.getItem(title) !== null) {
+					select.value = localStorage.getItem(title);
+				}
+				select.addEventListener("change", () => {
+					localStorage.setItem(title, select.value);
+				});
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,274 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="/static/tailwindCSS.js"></script>
+		<title>LDRP - ITR | Admission Form</title>
+		<style>
+			/* custom scrool bar */
+			::-webkit-scrollbar {
+				width: 0vw;
+			}
+		</style>
+	</head>
+
+	<body class="font-bold text-[1.5vw] text-[#363636]">
+		<div class="w-screen h-auto relative" style="background-image: url('/static/img/pdf1.png'); background-repeat: no-repeat; background-size: cover; aspect-ratio: 1/1.41">
+			<!-- photo -->
+			<div id="passportPhoto" class="w-[16.5vw] h-[19vw] absolute right-[6vw] top-[6vw]" style="background-image: url('/static/img/passportPhoto.png'); background-repeat: no-repeat; background-size: contain; background-position: center"></div>
+			<!-- date -->
+			<p data-title="date" id="date1Day" class="absolute top-[20.6vw] left-[10.5vw]">-</p>
+			<p data-title="date" id="date1Month" class="absolute top-[20.6vw] left-[14.5vw]">-</p>
+			<p data-title="date" id="date1Year" class="absolute top-[20.6vw] left-[19vw]">-</p>
+			<!-- round -->
+			<p name="round" id="round" data-title="round" class="absolute top-[20.5vw] right-[28vw]">-</p>
+			<!-- name of the student as per 12th marksheet-->
+			<p name="nameOfTheStudent" id="nameOfTheStudent" data-title="nameOfTheStudent" class="absolute top-[25.5vw] left-[36vw]">-</p>
+			<!-- student name -->
+			<p name="studentName" id="studentName" data-title="studentName" class="absolute top-[28vw] left-[16vw]">-</p>
+			<!-- father name -->
+			<p name="fatherName" id="fatherName" data-title="fatherName" class="absolute top-[30.5vw] left-[16vw]">-</p>
+			<!-- surname -->
+			<p name="surname" id="surname" data-title="surname" class="absolute top-[33vw] left-[13vw]">-</p>
+			<!-- ACPC Rank -->
+			<p name="ACPCRank" id="ACPCRank" data-title="ACPCRank" class="absolute top-[36.2vw] left-[16vw]">-</p>
+			<!-- Medium -->
+			<p name="medium" id="medium" data-title="medium" class="absolute top-[36.2vw] left-[80vw]">-</p>
+			<!-- gujcet roll no -->
+			<p name="GUJCETRollNo" id="GUJCETRollNo" data-title="GUJCETRollNo" class="absolute top-[39vw] left-[26vw]">-</p>
+			<!-- Board -->
+			<p name="board" id="board" data-title="board" class="absolute top-[39vw] left-[80vw]">-</p>
+			<!-- Category -->
+			<p name="category" id="category" data-title="category" class="absolute top-[42vw] left-[37vw]">-</p>
+			<!-- gender -->
+			<p name="gender" id="gender" data-title="gender" class="absolute top-[42vw] left-[78vw]">-</p>
+			<!-- date of birth -->
+			<p name="DOBDay" id="DOBDay" data-title="DOB" class="absolute top-[47.6vw] left-[16vw]">-</p>
+			<p name="DOBMonth" id="DOBMonth" data-title="DOB" class="absolute top-[47.6vw] left-[20vw]">-</p>
+			<p name="DOBYear" id="DOBYear" data-title="DOB" class="absolute top-[47.6vw] left-[24.5vw]">-</p>
+			<!-- place of birth -->
+			<p name="POB" id="POB" data-title="POB" class="absolute top-[47.6vw] left-[80.5vw]">-</p>
+			<!-- Course -->
+			<p name="course" id="course" data-title="course" class="absolute top-[44.7vw] left-[29.5vw]">-</p>
+			<!-- local address -->
+			<p name="localAddress" id="localAddress" data-title="localAddress" class="absolute top-[50.8vw] left-[19vw] w-[75vw] leading-[2.5vw]">-</p>
+			<!-- city -->
+			<p name="city" id="city" data-title="city" class="absolute top-[57.8vw] left-[26vw]">-</p>
+			<!-- pincode -->
+			<p name="pinCode" id="pinCode" data-title="pinCode" class="absolute top-[57.8vw] left-[84vw]">-</p>
+			<!-- permanent address -->
+			<p name="permanentAddress" id="permanentAddress" data-title="permanentAddress" class="absolute top-[60vw] left-[19.5vw] w-[74.5vw] leading-[2.5vw]">-</p>
+			<!-- city of permannent -->
+			<p name="cityOfPermanentAddress" id="cityOfPermanentAddress" data-title="cityOfPermanentAddress" class="absolute top-[66.7vw] left-[26vw]">-</p>
+			<!-- pincode of permannent -->
+			<p name="pinCodeOfPermanentAddress" id="pinCodeOfPermanentAddress" data-title="pinCodeOfPermanentAddress" class="absolute top-[66.7vw] left-[84vw]">-</p>
+			<!-- student email -->
+			<p name="studentEmail" id="studentEmail" data-title="studentEmail" class="absolute top-[69.6vw] left-[17vw]">-</p>
+			<!-- blood group -->
+			<p name="bloodGroup" id="bloodGroup" data-title="bloodGroup" class="absolute top-[69.6vw] left-[84vw]">-</p>
+			<!-- student mobile no -->
+			<p name="studentMobileNo1" id="studentMobileNo1" data-title="studentMobileNo1" class="absolute top-[73.7vw] left-[22vw]">-</p>
+			<!-- student mobile no 2 -->
+			<p name="studentMobileNo2" id="studentMobileNo2" data-title="studentMobileNo2" class="absolute top-[73.7vw] left-[70.5vw]">-</p>
+			<!-- parent mobile no -->
+			<p name="parentMobileNo" id="parentMobileNo" data-title="parentMobileNo" class="absolute top-[77vw] left-[19.5vw]">-</p>
+			<!-- religion -->
+			<p name="religion" id="religion" data-title="religion" class="absolute top-[76.8vw] left-[70.5vw]">-</p>
+			<!-- name of school -->
+			<p name="nameOfSchool" id="nameOfSchool" data-title="nameOfSchool" class="absolute top-[79.8vw] left-[29vw] w-[60vw] leading-[2.5vw]">-</p>
+			<!-- ssc values -->
+			<p name="ssc-year" id="ssc-year" data-title="ssc-year" class="absolute text-center top-[90.5vw] left-[22.2vw] w-[11vw]">-</p>
+			<p name="ssc-board" id="ssc-board" data-title="ssc-board" class="absolute text-center top-[90.5vw] left-[34.3vw] w-[13vw]">-</p>
+			<p name="ssc-class" id="ssc-class" data-title="ssc-class" class="absolute text-center top-[90.5vw] left-[48.3vw] w-[9vw]">-</p>
+			<p name="ssc-mark" id="ssc-mark" data-title="ssc-mark" class="absolute text-center top-[90.5vw] left-[58.4vw] w-[10.5vw]">-</p>
+			<p name="ssc-percentage" id="ssc-percentage" data-title="ssc-percentage" class="absolute text-center top-[90.5vw] left-[70.4vw] w-[10.5vw]">-</p>
+			<p name="ssc-pecentile" id="ssc-pecentile" data-title="ssc-pecentile" class="absolute text-center top-[90.5vw] left-[82.4vw] w-[11vw]">-</p>
+			<!-- hsc values -->
+			<p name="hsc-year" id="hsc-year" data-title="hsc-year" class="absolute text-center top-[93.4vw] left-[22.2vw] w-[11vw]">-</p>
+			<p name="hsc-board" id="hsc-board" data-title="hsc-board" class="absolute text-center top-[93.4vw] left-[34.3vw] w-[13vw]">-</p>
+			<p name="hsc-class" id="hsc-class" data-title="hsc-class" class="absolute text-center top-[93.4vw] left-[48.3vw] w-[9vw]">-</p>
+			<p name="hsc-mark" id="hsc-mark" data-title="hsc-mark" class="absolute text-center top-[93.4vw] left-[58.4vw] w-[10.5vw]">-</p>
+			<p name="hsc-percentage" id="hsc-percentage" data-title="hsc-percentage" class="absolute text-center top-[93.4vw] left-[70.4vw] w-[10.5vw]">-</p>
+			<p name="hsc-pecentile" id="hsc-pecentile" data-title="hsc-pecentile" class="absolute text-center top-[93.4vw] left-[82.4vw] w-[11vw]">-</p>
+			<!-- hsc all values -->
+			<p name="hscAll-year" id="hscAll-year" data-title="hscAll-year" class="absolute text-center top-[96.3vw] left-[22.2vw] w-[11vw]">-</p>
+			<p name="hscAll-board" id="hscAll-board" data-title="hscAll-board" class="absolute text-center top-[96.3vw] left-[34.3vw] w-[13vw]">-</p>
+			<p name="hscAll-class" id="hscAll-class" data-title="hscAll-class" class="absolute text-center top-[96.3vw] left-[48.3vw] w-[9vw]">-</p>
+			<p name="hscAll-mark" id="hscAll-mark" data-title="hscAll-mark" class="absolute text-center top-[96.3vw] left-[58.4vw] w-[10.5vw]">-</p>
+			<p name="hscAll-percentage" id="hscAll-percentage" data-title="hscAll-percentage" class="absolute text-center top-[96.3vw] left-[70.4vw] w-[10.5vw]">-</p>
+			<p name="hscAll-pecentile" id="hscAll-pecentile" data-title="hscAll-pecentile" class="absolute text-center top-[96.3vw] left-[82.4vw] w-[11vw]">-</p>
+			<!-- gujcet all values -->
+			<p name="gujcet-year" id="gujcet-year" data-title="gujcet-year" class="absolute text-center top-[99vw] left-[22.2vw] w-[11vw]">-</p>
+			<p name="gujcet-board" id="gujcet-board" data-title="gujcet-board" class="absolute text-center top-[99vw] left-[34.3vw] w-[13vw]">-</p>
+			<p name="gujcet-class" id="gujcet-class" data-title="gujcet-class" class="absolute text-center top-[99vw] left-[48.3vw] w-[9vw]">-</p>
+			<p name="gujcet-mark" id="gujcet-mark" data-title="gujcet-mark" class="absolute text-center top-[99vw] left-[58.4vw] w-[10.5vw]">-</p>
+			<p name="gujcet-percentage" id="gujcet-percentage" data-title="gujcet-percentage" class="absolute text-center top-[99vw] left-[70.4vw] w-[10.5vw]">-</p>
+			<p name="gujcet-pecentile" id="gujcet-pecentile" data-title="gujcet-pecentile" class="absolute text-center top-[99vw] left-[82.4vw] w-[11vw]">-</p>
+			<!-- mother name -->
+			<p name="motherName" id="motherName" data-title="motherName" class="absolute top-[108vw] left-[17vw]">-</p>
+			<!-- father name -->
+			<p name="fatherName2" id="fatherName2" data-title="fatherName2" class="absolute top-[111.4vw] left-[16.5vw]">-</p>
+			<!-- grand father name -->
+			<p name="grandFatherName" id="grandFatherName" data-title="grandFatherName" class="absolute top-[114.8vw] left-[21vw]">-</p>
+			<!-- surname -->
+			<p name="surname2" id="surname2" data-title="surname2" class="absolute top-[114.8vw] left-[69vw]">-</p>
+			<!-- paprent occupation -->
+			<p name="parentOccupation" id="parentOccupation" data-title="parentOccupation" class="absolute top-[117.7vw] left-[21vw]">-</p>
+			<!-- parent occupation add -->
+			<p name="parentOccupationAddress" id="parentOccupationAddress" data-title="parentOccupationAddress" class="absolute top-[120.4vw] left-[25.5vw] w-[68vw] leading-[2.5vw]">-</p>
+			<!-- city 3 -->
+			<p name="city3" id="city3" data-title="city3" class="absolute top-[126.9vw] left-[26vw]">-</p>
+			<!-- pincode 3 -->
+			<p name="pinCode3" id="pinCode3" data-title="pinCode3" class="absolute top-[126.9vw] left-[84vw]">-</p>
+			<!-- sign of student -->
+			<div id="signOfStudent1" class="w-[15.5vw] h-[6vw] absolute top-[130vw] left-[6vw]" style="background-image: url('/static/img/passportPhoto.png'); background-repeat: no-repeat; background-size: contain; background-position: center"></div>
+			<!-- sign of parent -->
+			<div id="signOfParent1" class="w-[14vw] h-[6vw] absolute top-[130vw] right-[6vw]" style="background-image: url('/static/img/passportPhoto.png'); background-repeat: no-repeat; background-size: contain; background-position: center"></div>
+		</div>
+		<div class="w-screen h-auto relative" style="background-image: url('/static/img/pdf2.png'); background-repeat: no-repeat; background-size: cover; aspect-ratio: 1/1.41">
+			<!-- sign of student -->
+			<div id="signOfStudent2" class="w-[15.5vw] h-[6vw] absolute top-[124vw] left-[6vw]" style="background-image: url('/static/img/passportPhoto.png'); background-repeat: no-repeat; background-size: contain; background-position: center"></div>
+			<!-- sign of parent -->
+			<div id="signOfParent2" class="w-[14vw] h-[6vw] absolute top-[124vw] right-[6vw]" style="background-image: url('/static/img/passportPhoto.png'); background-repeat: no-repeat; background-size: contain; background-position: center"></div>
+			<!-- date -->
+			<p data-title="date" id="date2Day" class="absolute top-[133.8vw] left-[10.5vw]">-</p>
+			<p data-title="date" id="date2Month" class="absolute top-[133.8vw] left-[14.5vw]">-</p>
+			<p data-title="date" id="date2Year" class="absolute top-[133.8vw] left-[19vw]">-</p>
+		</div>
+		<div class="w-screen h-auto relative" style="background-image: url('/static/img/pdf3.png'); background-repeat: no-repeat; background-size: cover; aspect-ratio: 1/1.41">
+			<!-- name of the student -->
+			<p name="nameOfTheStudent2" id="nameOfTheStudent2" data-title="nameOfTheStudent" class="absolute top-[89.5vw] left-[21vw]">-</p>
+			<!-- Course -->
+			<p name="course2" id="course2" data-title="course" class="absolute top-[95.5vw] left-[13vw]">-</p>
+			<!-- sign of student -->
+			<div id="signOfStudent3" class="w-[15.5vw] h-[6vw] absolute top-[98vw] right-[6vw]" style="background-image: url('/static/img/passportPhoto.png'); background-repeat: no-repeat; background-size: contain; background-position: center"></div>
+			<!-- sign of parent -->
+			<div id="signOfParent3" class="w-[14vw] h-[6vw] absolute top-[125vw] right-[6vw]" style="background-image: url('/static/img/passportPhoto.png'); background-repeat: no-repeat; background-size: contain; background-position: center"></div>
+			<!-- date -->
+			<p data-title="date" id="date3Day" class="absolute top-[134vw] left-[10.5vw]">-</p>
+			<p data-title="date" id="date3Month" class="absolute top-[134vw] left-[14.5vw]">-</p>
+			<p data-title="date" id="date3Year" class="absolute top-[134vw] left-[19vw]">-</p>
+		</div>
+		<script>
+			document.getElementById("passportPhoto").style.backgroundImage = "url('/media/images/" + localStorage.getItem("passportPhoto") + "')";
+			document.getElementById("signOfParent1").style.backgroundImage = "url('/media/images/" + localStorage.getItem("signOfParent") + "')";
+			document.getElementById("signOfParent2").style.backgroundImage = "url('/media/images/" + localStorage.getItem("signOfParent") + "')";
+			document.getElementById("signOfParent3").style.backgroundImage = "url('/media/images/" + localStorage.getItem("signOfParent") + "')";
+			document.getElementById("signOfStudent1").style.backgroundImage = "url('/media/images/" + localStorage.getItem("signOfStudent") + "')";
+			document.getElementById("signOfStudent2").style.backgroundImage = "url('/media/images/" + localStorage.getItem("signOfStudent") + "')";
+			document.getElementById("signOfStudent3").style.backgroundImage = "url('/media/images/" + localStorage.getItem("signOfStudent") + "')";
+
+			document.getElementById("date1Day").innerHTML = localStorage.getItem(document.getElementById("date1Day").getAttribute("data-title")).split("/")[0];
+			document.getElementById("date1Month").innerHTML = localStorage.getItem(document.getElementById("date1Month").getAttribute("data-title")).split("/")[1];
+			document.getElementById("date1Year").innerHTML = localStorage.getItem(document.getElementById("date1Year").getAttribute("data-title")).split("/")[2];
+
+			document.getElementById("date2Day").innerHTML = localStorage.getItem(document.getElementById("date2Day").getAttribute("data-title")).split("/")[0];
+			document.getElementById("date2Month").innerHTML = localStorage.getItem(document.getElementById("date2Month").getAttribute("data-title")).split("/")[1];
+			document.getElementById("date2Year").innerHTML = localStorage.getItem(document.getElementById("date2Year").getAttribute("data-title")).split("/")[2];
+
+			document.getElementById("date3Day").innerHTML = localStorage.getItem(document.getElementById("date3Day").getAttribute("data-title")).split("/")[0];
+			document.getElementById("date3Month").innerHTML = localStorage.getItem(document.getElementById("date3Month").getAttribute("data-title")).split("/")[1];
+			document.getElementById("date3Year").innerHTML = localStorage.getItem(document.getElementById("date3Year").getAttribute("data-title")).split("/")[2];
+
+			document.getElementById("round").innerHTML = localStorage.getItem(document.getElementById("round").getAttribute("data-title"));
+
+			document.getElementById("nameOfTheStudent").innerHTML = localStorage.getItem(document.getElementById("nameOfTheStudent").getAttribute("data-title"));
+			document.getElementById("nameOfTheStudent2").innerHTML = localStorage.getItem(document.getElementById("nameOfTheStudent2").getAttribute("data-title"));
+
+			document.getElementById("studentName").innerHTML = localStorage.getItem(document.getElementById("studentName").getAttribute("data-title"));
+
+			document.getElementById("fatherName").innerHTML = localStorage.getItem(document.getElementById("fatherName").getAttribute("data-title"));
+
+			document.getElementById("surname").innerHTML = localStorage.getItem(document.getElementById("surname").getAttribute("data-title"));
+
+			document.getElementById("ACPCRank").innerHTML = localStorage.getItem(document.getElementById("ACPCRank").getAttribute("data-title"));
+
+			document.getElementById("medium").innerHTML = localStorage.getItem(document.getElementById("medium").getAttribute("data-title"));
+
+			document.getElementById("GUJCETRollNo").innerHTML = localStorage.getItem(document.getElementById("GUJCETRollNo").getAttribute("data-title"));
+
+			document.getElementById("board").innerHTML = localStorage.getItem(document.getElementById("board").getAttribute("data-title"));
+
+			document.getElementById("category").innerHTML = localStorage.getItem(document.getElementById("category").getAttribute("data-title"));
+
+			document.getElementById("gender").innerHTML = localStorage.getItem(document.getElementById("gender").getAttribute("data-title"));
+
+			document.getElementById("course").innerHTML = localStorage.getItem(document.getElementById("course").getAttribute("data-title"));
+
+			document.getElementById("course2").innerHTML = localStorage.getItem(document.getElementById("course2").getAttribute("data-title"));
+
+			document.getElementById("DOBDay").innerHTML = localStorage.getItem(document.getElementById("DOBDay").getAttribute("data-title")).split("/")[0];
+			document.getElementById("DOBMonth").innerHTML = localStorage.getItem(document.getElementById("DOBMonth").getAttribute("data-title")).split("/")[1];
+			document.getElementById("DOBYear").innerHTML = localStorage.getItem(document.getElementById("DOBYear").getAttribute("data-title")).split("/")[2];
+
+			document.getElementById("POB").innerHTML = localStorage.getItem(document.getElementById("POB").getAttribute("data-title"));
+
+			document.getElementById("localAddress").innerHTML = localStorage.getItem(document.getElementById("localAddress").getAttribute("data-title"));
+			document.getElementById("city").innerHTML = localStorage.getItem(document.getElementById("city").getAttribute("data-title"));
+			document.getElementById("pinCode").innerHTML = localStorage.getItem(document.getElementById("pinCode").getAttribute("data-title"));
+
+			document.getElementById("permanentAddress").innerHTML = localStorage.getItem(document.getElementById("permanentAddress").getAttribute("data-title"));
+			document.getElementById("cityOfPermanentAddress").innerHTML = localStorage.getItem(document.getElementById("cityOfPermanentAddress").getAttribute("data-title"));
+			document.getElementById("pinCodeOfPermanentAddress").innerHTML = localStorage.getItem(document.getElementById("pinCodeOfPermanentAddress").getAttribute("data-title"));
+
+			document.getElementById("studentEmail").innerHTML = localStorage.getItem(document.getElementById("studentEmail").getAttribute("data-title"));
+
+			document.getElementById("studentMobileNo1").innerHTML = localStorage.getItem(document.getElementById("studentMobileNo1").getAttribute("data-title"));
+			document.getElementById("studentMobileNo2").innerHTML = localStorage.getItem(document.getElementById("studentMobileNo2").getAttribute("data-title"));
+			document.getElementById("parentMobileNo").innerHTML = localStorage.getItem(document.getElementById("parentMobileNo").getAttribute("data-title"));
+
+			document.getElementById("bloodGroup").innerHTML = localStorage.getItem(document.getElementById("bloodGroup").getAttribute("data-title"));
+
+			document.getElementById("nameOfSchool").innerHTML = localStorage.getItem(document.getElementById("nameOfSchool").getAttribute("data-title"));
+
+			document.getElementById("religion").innerHTML = localStorage.getItem(document.getElementById("religion").getAttribute("data-title"));
+
+			document.getElementById("ssc-year").innerHTML = localStorage.getItem(document.getElementById("ssc-year").getAttribute("data-title"));
+			document.getElementById("ssc-board").innerHTML = localStorage.getItem(document.getElementById("ssc-board").getAttribute("data-title"));
+			document.getElementById("ssc-class").innerHTML = localStorage.getItem(document.getElementById("ssc-class").getAttribute("data-title"));
+			document.getElementById("ssc-mark").innerHTML = localStorage.getItem(document.getElementById("ssc-mark").getAttribute("data-title"));
+			document.getElementById("ssc-percentage").innerHTML = localStorage.getItem(document.getElementById("ssc-percentage").getAttribute("data-title"));
+			document.getElementById("ssc-pecentile").innerHTML = localStorage.getItem(document.getElementById("ssc-pecentile").getAttribute("data-title"));
+
+			document.getElementById("hsc-year").innerHTML = localStorage.getItem(document.getElementById("hsc-year").getAttribute("data-title"));
+			document.getElementById("hsc-board").innerHTML = localStorage.getItem(document.getElementById("hsc-board").getAttribute("data-title"));
+			document.getElementById("hsc-class").innerHTML = localStorage.getItem(document.getElementById("hsc-class").getAttribute("data-title"));
+			document.getElementById("hsc-mark").innerHTML = localStorage.getItem(document.getElementById("hsc-mark").getAttribute("data-title"));
+			document.getElementById("hsc-percentage").innerHTML = localStorage.getItem(document.getElementById("hsc-percentage").getAttribute("data-title"));
+			document.getElementById("hsc-pecentile").innerHTML = localStorage.getItem(document.getElementById("hsc-pecentile").getAttribute("data-title"));
+
+			document.getElementById("hscAll-year").innerHTML = localStorage.getItem(document.getElementById("hscAll-year").getAttribute("data-title"));
+			document.getElementById("hscAll-board").innerHTML = localStorage.getItem(document.getElementById("hscAll-board").getAttribute("data-title"));
+			document.getElementById("hscAll-class").innerHTML = localStorage.getItem(document.getElementById("hscAll-class").getAttribute("data-title"));
+			document.getElementById("hscAll-mark").innerHTML = localStorage.getItem(document.getElementById("hscAll-mark").getAttribute("data-title"));
+			document.getElementById("hscAll-percentage").innerHTML = localStorage.getItem(document.getElementById("hscAll-percentage").getAttribute("data-title"));
+			document.getElementById("hscAll-pecentile").innerHTML = localStorage.getItem(document.getElementById("hscAll-pecentile").getAttribute("data-title"));
+
+			document.getElementById("gujcet-year").innerHTML = localStorage.getItem(document.getElementById("gujcet-year").getAttribute("data-title"));
+			document.getElementById("gujcet-board").innerHTML = localStorage.getItem(document.getElementById("gujcet-board").getAttribute("data-title"));
+			document.getElementById("gujcet-class").innerHTML = localStorage.getItem(document.getElementById("gujcet-class").getAttribute("data-title"));
+			document.getElementById("gujcet-mark").innerHTML = localStorage.getItem(document.getElementById("gujcet-mark").getAttribute("data-title"));
+			document.getElementById("gujcet-percentage").innerHTML = localStorage.getItem(document.getElementById("gujcet-percentage").getAttribute("data-title"));
+			document.getElementById("gujcet-pecentile").innerHTML = localStorage.getItem(document.getElementById("gujcet-pecentile").getAttribute("data-title"));
+
+			document.getElementById("motherName").innerHTML = localStorage.getItem(document.getElementById("motherName").getAttribute("data-title"));
+
+			document.getElementById("fatherName2").innerHTML = localStorage.getItem(document.getElementById("fatherName2").getAttribute("data-title"));
+
+			document.getElementById("grandFatherName").innerHTML = localStorage.getItem(document.getElementById("grandFatherName").getAttribute("data-title"));
+
+			document.getElementById("surname2").innerHTML = localStorage.getItem(document.getElementById("surname2").getAttribute("data-title"));
+
+			document.getElementById("parentOccupation").innerHTML = localStorage.getItem(document.getElementById("parentOccupation").getAttribute("data-title"));
+
+			document.getElementById("parentOccupationAddress").innerHTML = localStorage.getItem(document.getElementById("parentOccupationAddress").getAttribute("data-title"));
+
+			document.getElementById("city3").innerHTML = localStorage.getItem(document.getElementById("city3").getAttribute("data-title"));
+
+			document.getElementById("pinCode3").innerHTML = localStorage.getItem(document.getElementById("pinCode3").getAttribute("data-title"));
+		</script>
+	</body>
+</html>
