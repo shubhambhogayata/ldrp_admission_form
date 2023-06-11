@@ -12,9 +12,11 @@
 	<body class="bg-[#F5F5F5] overflow-x-hidden">
 		<!-- Navbar -->
 		<div class="fixed top-0 w-full bg-[#263A81] p-4 text-white flex items-center justify-between z-50">
-			<div class="lg:w-[280px] w-[180px]">
-				<img src="{% static '/img/LDRP-LOGO.svg' %}" class="object-contain" />
-			</div>
+			<a href="/">
+				<div class="lg:w-[280px] w-[180px]">
+					<img src="{% static '/img/LDRP-LOGO.svg' %}" class="object-contain" />
+				</div>
+			</a>
 			<div class>
 				<p class="uppercase font-bold hidden lg:block">Student Information</p>
 			</div>
@@ -51,7 +53,7 @@
 					<p class="my-4 font-semibold text-justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;હું ખાતરી આપું છું કે બીજી શૈક્ષણિક સંસથા / યુનિવર્સિટીની પરીક્ષામાંથી યને બરતરફ કરવામાં આવેલ તથી, જે મેં પ્રવેશ સમયે જમા કરાવેલ ગુણપત્રો (માર્કશીટ) કે પ્રમાણપત્ર (સર્ટિફિકેટ્સ) khota પૂરવાર થાય તો મારો પ્રવેશ | તાત્કાલિક ધોરણે રૂદળાતલ ગણવામાં આવશે. મને જાણ છે કે આવી કોઈપણ પ્રવૃત્તિ ગેરકાયદેસર છે અને મારા | વિરુદ્ધ પોલીસ / કાયદેસર કાર્યવાહી થઈ શકશે.</p>
 					<p class="my-4 font-semibold text-justify">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;હું બાંહેધરી આપું છે સંસ્થામાં કાયમ (આઈ.ડી. કાડી) સાથે રાખીશ, નહીં તો શિક્ષા પાત્ર થાઈશ.</p>
 				</div>
-				<form action="/page4/" method="post">
+				<form action="/page3/" method="post">
 					{% csrf_token %}
 					<div class="lg:px-5 px-3">
 						<p class="text-[#159BD6] text-justify lg:text-left"><span class="font-bold">Note: </span>Please Fill all the details in <span class="font-bold">CAPITAL</span> Letters only</p>
@@ -163,7 +165,15 @@
 					</div>
 					<div class="w-fit mx-auto flex gap-3 my-4">
 						<button type="submit" class="bg-[#159BD6] p-2 lg:px-8 px-4 text-white font-bold rounded-md">Save And Next</button>
-						<button type="reset" class="p-2 px-14 border border-[#159BD6] rounded-md text-[#159BD6] font-bold">Cancel</button>
+						<button
+							type="reset"
+							class="p-2 px-14 border border-[#159BD6] rounded-md text-[#159BD6] font-bold"
+							onclick="(()=>{
+							window.location.href = '/page'
+						})()"
+						>
+							Cancel
+						</button>
 					</div>
 				</form>
 			</div>

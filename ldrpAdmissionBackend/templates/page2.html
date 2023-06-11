@@ -12,9 +12,11 @@
 	<body class="bg-[#F5F5F5] overflow-x-hidden">
 		<!-- Navbar -->
 		<div class="fixed top-0 w-full bg-[#263A81] p-4 text-white flex items-center justify-between z-50">
-			<div class="lg:w-[280px] w-[180px]">
-				<img src="{% static '/img/LDRP-LOGO.svg' %}" class="object-contain" />
-			</div>
+			<a href="/">
+				<div class="lg:w-[280px] w-[180px]">
+					<img src="{% static '/img/LDRP-LOGO.svg' %}" class="object-contain" />
+				</div>
+			</a>
 			<div class>
 				<p class="uppercase font-bold hidden lg:block">Student Information</p>
 			</div>
@@ -184,7 +186,15 @@
 					</div>
 					<div class="w-fit mx-auto flex gap-3 my-4">
 						<button type="submit" class="bg-[#159BD6] p-2 lg:px-8 px-4 text-white font-bold rounded-md">Save And Next</button>
-						<button type="reset" class="p-2 px-14 border border-[#159BD6] rounded-md text-[#159BD6] font-bold">Cancel</button>
+						<button
+							type="reset"
+							class="p-2 px-14 border border-[#159BD6] rounded-md text-[#159BD6] font-bold"
+							onclick="(()=>{
+								window.location.href = '/'
+							})()"
+						>
+							Cancel
+						</button>
 					</div>
 				</form>
 			</div>

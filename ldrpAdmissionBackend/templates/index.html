@@ -24,9 +24,11 @@
 	<body class="bg-[#F5F5F5] overflow-x-hidden">
 		<!-- Navbar -->
 		<div class="fixed top-0 w-full bg-[#263A81] p-4 text-white flex items-center justify-between z-50">
-			<div class="lg:w-[280px] w-[180px]">
-				<img src="{% static '/img/LDRP-LOGO.svg' %}" class="object-contain" />
-			</div>
+			<a href="/">
+				<div class="lg:w-[280px] w-[180px]">
+					<img src="{% static '/img/LDRP-LOGO.svg' %}" class="object-contain" />
+				</div>
+			</a>
 			<div>
 				<p class="uppercase font-bold hidden lg:block">Student Information</p>
 			</div>
@@ -227,7 +229,7 @@
 					<div class="lg:px-5 flex flex-col lg:flex-row items-center justify-between">
 						<div class="flex flex-col lg:flex-row lg:items-center gap-2 my-4 w-full lg:w-fit">
 							<p class="capitalize font-bold">Student Email :</p>
-							<input type="email" name="studentEmail" id="studentEmail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" data-title="studentEmail" class="border border-[#CBCBCB] lg:w-[20rem] w-full rounded-md text-[#159BD6] outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="Student Email" required />
+							<input type="email" name="studentEmail" id="studentEmail" pattern="[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$" data-title="studentEmail" class="border border-[#CBCBCB] lg:w-[20rem] w-full rounded-md text-[#159BD6] outline-none focus:outline-none focus:border-[#159BD6] focus:ring-1 focus:ring-[#159BD6] transition-all duration-300 p-1 px-2 text-sm" placeholder="Student Email" required />
 						</div>
 						<div class="flex flex-col lg:flex-row lg:items-center gap-2 my-4 w-full lg:w-fit">
 							<p class="capitalize font-bold">Student Mobile No (1) :</p>

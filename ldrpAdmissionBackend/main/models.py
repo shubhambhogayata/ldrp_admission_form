@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils.html import mark_safe
 # Create your models here.
 class formTable(models.Model):
     ACPCRank = models.CharField(max_length=100)
@@ -65,3 +65,7 @@ class formTable(models.Model):
     studentName = models.CharField(max_length=100)
     surname = models.CharField(max_length=100)
     surname2 = models.CharField(max_length=100)
+    docs = models.JSONField(default=dict, blank=True, null=True)
+
+    def Student_Photo(self):
+        return mark_safe(f'<img src="/media/images/{self.passportPhoto}" width = "50"/>')

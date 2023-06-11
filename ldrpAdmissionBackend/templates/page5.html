@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="{% static 'tailwindCSS.js' %}"></script>
+		<script src="{% static 'html2pdf.js' %}"></script>
+		<title>LDRP - ITR | Admission Form</title>
+	</head>
+	<body class="bg-[#F5F5F5] overflow-x-hidden h-screen flex flex-col justify-between">
+		<!-- Navbar -->
+		<div class="fixed top-0 w-full bg-[#263A81] p-4 text-white flex items-center justify-between z-50">
+			<a href="/">
+				<div class="lg:w-[280px] w-[180px]">
+					<img src="{% static '/img/LDRP-LOGO.svg' %}" class="object-contain" />
+				</div>
+			</a>
+			<div>
+				<p class="uppercase font-bold hidden lg:block">Student Information</p>
+			</div>
+			<div class="flex flex-col lg:flex-row items-start gap-2">
+				<div>
+					<p class="font-bold">Contact No. :</p>
+				</div>
+				<div>
+					<p>+ 91 - 079 - 23241492</p>
+					<p>+ 91 - 079 - 23241493</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="px-5 lg:px-0">
+			<div class="lg:mt-24 mt-32 mb-4 lg:w-[90%] w-full mx-auto bg-white p-2 rounded-xl text-center">
+				<p class="uppercase text-[#159BD6] font-bold text-lg tracking-[0.02em]">Your application has bees submitted.</p>
+			</div>
+		</div>
+
+		<div class="px-5 lg:w-[90%] w-full h-full mx-auto mb-5 flex lg:flex-row flex-col lg:flex-nowrap gap-1 lg:gap-5">
+			<div class="w-full h-full mx-auto bg-white p-3 px-4 rounded-xl mb-4 relative">
+				<iframe id="formPDF" name="formPDF" src="/pdf" class="w-full h-full"></iframe>
+				<div onclick="convertHtmlToPdf()" class="w-10 h-10 absolute top-4 right-4 flex items-center justify-center bg-[#159BD6] rounded-full hover:scale-110 transition-all duration-300 hover:cursor-pointer">
+					<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" fill="white" class="bi bi-download" viewBox="0 0 16 16">
+						<path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+						<path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+					</svg>
+				</div>
+			</div>
+			<div class="w-full h-fit lg:h-full mx-auto bg-white p-3 px-4 rounded-xl mb-4 flex items-center justify-center">
+				<div class="flex flex-col items-center gap-5">
+					<p class="text-[#159BD6] font-bold capitalize">For New Application</p>
+					<button
+						class="bg-[#159BD6] p-1 px-5 text-white font-bold rounded-md"
+						onclick="(()=>{
+                                window.location.href = '/'
+                                localStorage.clear()
+                        })()"
+					>
+						Click Here
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<div class="w-full bg-[#263A81] p-4 text-white flex lg:flex-row flex-col items-center justify-between">
+			<p class="text-justify lg:text-left"><span class="font-bold">Address: </span>LDRP Institute of Technology & Research,Near KH-5,Sector-15,Gandhinagar - 382015.</p>
+			<p class="font-bold">Info@ldrp.ac.in</p>
+		</div>
+		<script>
+			function convertHtmlToPdf() {
+				var iframe = document.getElementById("formPDF");
+				let date = new Date().toLocaleDateString();
+				html2pdf()
+					.from(iframe.contentDocument.body)
+					.set({ margin: -0.23, filename: "LDRP Admission Form (" + date + ").pdf", html2canvas: { scale: 2 }, jsPDF: { unit: "in", format: "a4", orientation: "portrait" } })
+					.save();
+			}
+		</script>
+	</body>
+</html>

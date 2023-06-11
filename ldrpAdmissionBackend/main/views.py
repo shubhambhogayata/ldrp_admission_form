@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 import uuid
 import json
 from .models import formTable
+import os
 
 def index(request):
     if request.method == "POST":
@@ -239,6 +240,7 @@ def page3(request):
         GUJCETRollNo = request.session["GUJCETRollNo"]
         studentEmail = request.session["studentEmail"]
         studentMobileNo1 = request.session["studentMobileNo1"]
+
         date = request.POST["date"]
         signOfStudent = request.POST["signOfStudentUrl"]
         signOfParent = request.POST["signOfParentUrl"]
@@ -256,7 +258,140 @@ def page3(request):
     return render(request, "page3.html")
 
 def page4(request):
+    if request.method == "POST":
+        ACPCRank= request.session["ACPCRank"]
+        GUJCETRollNo = request.session["GUJCETRollNo"]
+        studentEmail = request.session["studentEmail"]
+        studentMobileNo1 = request.session["studentMobileNo1"]
+        nameOfTheStudent = request.session["nameOfTheStudent"]
+
+        date = request.POST["date"]
+        signOfStudent = request.POST["signOfStudentUrl"]
+        signOfParent = request.POST["signOfParentUrl"]
+
+        # document-ssc
+        documentSSC = request.FILES["document-SSC"]
+        documentSSCUrl = str(uuid.uuid4())+"_"+documentSSC.name
+        with open("media/docs/" + documentSSCUrl, "wb") as f:
+            for chunk in documentSSC.chunks():
+                f.write(chunk)
+
+        # document-hsc
+        documentHSC = request.FILES["document-HSC"]
+        documentHSCUrl = str(uuid.uuid4())+"_"+documentHSC.name
+        with open("media/docs/" + documentHSCUrl, "wb") as f:
+            for chunk in documentHSC.chunks():
+                f.write(chunk)
+
+        # document-gujcet
+        documentGUJCET= request.FILES["document-GUJCET"]
+        documentGUJCETUrl = str(uuid.uuid4())+"_"+documentGUJCET.name
+        with open("media/docs/" + documentGUJCETUrl, "wb") as f:
+            for chunk in documentGUJCET.chunks():
+                f.write(chunk)
+
+        # document-schoollc
+        documentSchoolLC= request.FILES["document-SchoolLC"]
+        documentSchoolLCUrl = str(uuid.uuid4())+"_"+documentSchoolLC.name
+        with open("media/docs/" + documentSchoolLCUrl, "wb") as f:
+            for chunk in documentSchoolLC.chunks():
+                f.write(chunk)
+        
+        # document-AdmissionOrder
+        documentAdmissionOrder= request.FILES["document-AdmissionOrder"]
+        documentAdmissionOrderUrl = str(uuid.uuid4())+"_"+documentAdmissionOrder.name
+        with open("media/docs/" + documentAdmissionOrderUrl, "wb") as f:
+            for chunk in documentAdmissionOrder.chunks():
+                f.write(chunk)
+        
+        # document-BangFeeChallan
+        documentBangFeeChallan= request.FILES["document-BangFeeChallan"]
+        documentBangFeeChallanUrl = str(uuid.uuid4())+"_"+documentBangFeeChallan.name
+        with open("media/docs/" + documentBangFeeChallanUrl, "wb") as f:
+            for chunk in documentBangFeeChallan.chunks():
+                f.write(chunk)
+        
+        # document-Photograph
+        documentPhotograph= request.FILES["document-Photograph"]
+        documentPhotographUrl = str(uuid.uuid4())+"_"+documentPhotograph.name
+        with open("media/docs/" + documentPhotographUrl, "wb") as f:
+            for chunk in documentPhotograph.chunks():
+                f.write(chunk)
+        
+        # document-ncl
+        try:
+            documentNLC = request.FILES["document-NCL"]
+            documentNLCUrl = str(uuid.uuid4())+"_"+documentNLC.name
+            with open("media/docs/" + documentNLCUrl, "wb") as f:
+                for chunk in documentNLC.chunks():
+                    f.write(chunk)
+        except:
+            documentNLCUrl = ""
+        
+        # document-castecerti
+        try:
+            documentCasteCerti = request.FILES["document-CasteCerti"]
+            documentCasteCertiUrl = str(uuid.uuid4())+"_"+documentCasteCerti.name
+            with open("media/docs/" + documentCasteCertiUrl, "wb") as f:
+                for chunk in documentCasteCerti.chunks():
+                    f.write(chunk)
+        except:
+            documentCasteCertiUrl = ""
+            
+        # documentcerti-of-ph
+        try:
+            documentCertiOfPH = request.FILES["document-CertiOfPH"]
+            documentCertiOfPHUrl = str(uuid.uuid4())+"_"+documentCertiOfPH.name
+            with open("media/docs/" + documentCertiOfPHUrl, "wb") as f:
+                for chunk in documentCertiOfPH.chunks():
+                    f.write(chunk)
+        except:
+            documentCertiOfPHUrl = ""
+
+        # documents
+        docsDict = {
+            "SSC":documentSSCUrl,
+            "HSC":documentHSCUrl,
+            "GUJCET":documentGUJCETUrl,
+            "SchoolLC":documentSchoolLCUrl,
+            "AdmissionOrder":documentAdmissionOrderUrl,
+            "BangFeeChallan":documentBangFeeChallanUrl,
+            "Photograph":documentPhotographUrl,
+            "CasteCerti":documentCasteCertiUrl,
+            "CertiOfPH":documentCertiOfPHUrl,
+            "NLC":documentNLCUrl
+        }
+
+        entry = formTable.objects.filter(studentEmail=studentEmail,studentMobileNo1=studentMobileNo1,ACPCRank=ACPCRank,GUJCETRollNo=GUJCETRollNo,nameOfTheStudent=nameOfTheStudent).first()
+        entry.date = date.split("/")[2]+"-"+date.split("/")[1]+"-"+date.split("/")[0]
+        entry.signOfStudent = signOfStudent
+        entry.signOfParent = signOfParent
+        entry.docs = docsDict
+        entry.save()
+        return redirect("/page5/")
+
     return render(request, "page4.html")
+
+def removeUnwanted():
+    allEntry = formTable.objects.all()
+    files = []
+    for entry in allEntry:
+        files.append(entry.passportPhoto)
+        files.append(entry.signOfParent)
+        files.append(entry.signOfStudent)
+        for i in (entry.docs).keys():
+            if entry.docs[i] != "":
+                files.append(entry.docs[i])
+    for file in os.listdir("media/images/"):
+        if file not in files:
+            os.remove("media/images/"+file)
+    for file in os.listdir("media/docs/"):
+        if file not in files:
+            os.remove("media/docs/"+file)
+
+def page5(request):
+    removeUnwanted()
+    return render(request, "page5.html")
 
 @csrf_exempt
 def pdf(request):
@@ -271,5 +406,17 @@ def imageUpload(request):
             for chunk in image.chunks():
                 f.write(chunk)
         return HttpResponse(json.dumps({"image": imageName+".png"}), content_type="application/json")
+    else:
+        return HttpResponse("You are not allowed to access this page.")
+
+@csrf_exempt
+def docUpload(request):
+    if request.method == "POST":
+        doc = request.FILES["doc"]
+        docName = str(uuid.uuid4())
+        with open("media/docs/" + docName, "wb") as f:
+            for chunk in doc.chunks():
+                f.write(chunk)
+        return HttpResponse(json.dumps({"doc": docName}), content_type="application/json")
     else:
         return HttpResponse("You are not allowed to access this page.")
